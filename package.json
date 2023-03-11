@@ -1,0 +1,7 @@
+{
+  "name": "social-media-app",
+  "version": "1.0.0",
+  "scripts": {
+    "install": "cd server && npm install && cd ../client && npm install"
+  }
+}
