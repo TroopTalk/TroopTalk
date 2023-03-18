@@ -1,31 +1,26 @@
 import { db } from "../connect.js";
-import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
+import crypto from "crypto";
+
+dotenv.config();
 
 export const register = (req, res) => {
-  //CHECK USER IF EXISTS
-
-  const q = "SELECT * FROM users WHERE username = ?";
+  const q = "SELECT * FROM users WHERE username = ?"; // query user table to find all users by username
 
   db.query(q, [req.body.username], (err, data) => {
     if (err) return res.status(500).json(err);
     if (data.length) return res.status(409).json("User already exists!");
-    //CREATE A NEW USER
-    //Hash the password
-    const salt = bcrypt.genSaltSync(10);
+
+    const salt = bcrypt.genSaltSync(process.env.AUTH_SALT);
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
-    const q =
-      "INSERT INTO users (`username`,`email`,`password`,`name`) VALUE (?)";
+    const q = "INSERT INTO users (`username`,`email`,`password`,`name`) VALUE (?)";
 
-    const values = [
-      req.body.username,
-      req.body.email,
-      hashedPassword,
-      req.body.name,
-    ];
+    const values = [req.body.username, req.body.email, hashedPassword, req.body.name];
 
-    db.query(q, [values], (err, data) => {
+    db.query(q, [values], (err) => {
       if (err) return res.status(500).json(err);
       return res.status(200).json("User has been created.");
     });
@@ -39,20 +34,16 @@ export const login = (req, res) => {
     if (err) return res.status(500).json(err);
     if (data.length === 0) return res.status(404).json("User not found!");
 
-    const checkPassword = bcrypt.compareSync(
-      req.body.password,
-      data[0].password
-    );
+    const checkPassword = bcrypt.compareSync(req.body.password, data[0].password);
+    if (!checkPassword) return res.status(400).json("Wrong password or username!");
 
-    if (!checkPassword)
-      return res.status(400).json("Wrong password or username!");
-
-    const token = jwt.sign({ id: data[0].id }, "secretkey");
+    const secret = crypto.randomBytes(16).toString(process.env.AUTH_ENCODING); // Generate a random 16-byte secret key
+    const token = jwt.sign({ id: data[0].id }, secret); // Use the secret key to sign the JWT
 
     const { password, ...others } = data[0];
 
     res
-      .cookie("accessToken", token, {
+      .cookie(process.env.AUTH_TOKEN, token, {
         httpOnly: true,
       })
       .status(200)
@@ -61,8 +52,11 @@ export const login = (req, res) => {
 };
 
 export const logout = (req, res) => {
-  res.clearCookie("accessToken",{
-    secure:true,
-    sameSite:"none"
-  }).status(200).json("User has been logged out.")
+  res
+    .clearCookie(process.env.AUTH_TOKEN, {
+      secure: true,
+      sameSite: true,
+    })
+    .status(200)
+    .json("User has been logged out.");
 };
