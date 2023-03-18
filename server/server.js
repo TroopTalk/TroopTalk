@@ -1,21 +1,32 @@
+import Routes from "./routes/index.js";
+import cookieParser from "cookie-parser";
 import express from "express";
+import dotenv from "dotenv";
 import cors from "cors";
-import mysql from "mysql";
+
+dotenv.config();
 const app = express();
 app.use(express.json());
 
 //middlewares
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Credentials", true);
+  res.header(process.env.CORS_MSG, true);
   next();
 });
 app.use(
   cors({
-    origin: "http://localhost:3000",
-    credentials: true,
+    origin: process.env.CORS_ORG,
   }),
 );
+app.use(cookieParser());
 
-app.listen(3001, () => {
-  console.log("Server running!");
+app.use("/api/auth", Routes.authRoutes);
+app.use("/api/comments", Routes.commentRoutes);
+app.use("/api/likes", Routes.likeRoutes);
+app.use("/api/posts", Routes.postRoutes);
+app.use("/api/relationships", Routes.relationshipRoutes);
+app.use("/api/users", Routes.userRoutes);
+
+app.listen(process.env.SERVER_PORT, () => {
+  console.log("API working!");
 });

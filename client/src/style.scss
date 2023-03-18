@@ -17,11 +17,6 @@ $themes: (
   ),
 );
 
-body {
-  padding: 0;
-  margin: 0;
-}
-
 @mixin themify($themes) {
   @each $theme, $map in $themes {
     .theme-#{$theme} & {
