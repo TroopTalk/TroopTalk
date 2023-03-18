@@ -1,8 +1,5 @@
+import { bcrypt, crypto, dotenv, jwt } from "../packages.js";
 import { db } from "../connect.js";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
-import dotenv from "dotenv";
-import crypto from "crypto";
 
 dotenv.config();
 

@@ -1,5 +1,4 @@
-import mysql from "mysql";
-import dotenv from "dotenv";
+import { dotenv, mysql } from "./packages.js";
 
 dotenv.config();
 

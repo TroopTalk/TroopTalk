@@ -1,5 +1,5 @@
-import express from "express";
 import { getRelationships, addRelationship, deleteRelationship } from "../controllers/relationship.js";
+import { express } from "../packages.js";
 
 const router = express.Router();
 
