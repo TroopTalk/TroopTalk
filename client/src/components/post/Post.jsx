@@ -1,4 +1,4 @@
-import { FavoriteBorderOutlinedIcon, FavoriteOutlinedIcon, MoreHorizIcon, ShareOutlinedIcon, TextsmsOutlinedIcon } from "./icons.js";
+import { NotLiked, Liked, More, Share, Text } from "./icons.js";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { Comments } from "../export.js";
 import { Link } from "react-router-dom";
@@ -15,7 +15,7 @@ const Post = ({ post }) => {
   const { currentUser } = useContext(AuthContext);
 
   const { isLoading, data } = useQuery(["likes", post.id], () =>
-    makeRequest.get("/likes?postId=" + post.id).then((res) => {
+    makeRequest.get(`/likes?postId=${post.id}`).then((res) => {
       return res.data;
     }),
   );
@@ -29,7 +29,6 @@ const Post = ({ post }) => {
     },
     {
       onSuccess: () => {
-        // Invalidate and refetch
         queryClient.invalidateQueries(["likes"]);
       },
     },
@@ -41,7 +40,7 @@ const Post = ({ post }) => {
     {
       onSuccess: () => {
         // Invalidate and refetch
-        queryClient.invalidateQueries(["posts"]);
+        queryClient.invalidateQueries(["postMores"]);
       },
     },
   );
@@ -59,7 +58,7 @@ const Post = ({ post }) => {
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={"/upload/" + post.profilePic} alt="" />
+            <img src={"/upload/" + post.profilePic} alt={`Profile picture for ${post.name}`} />
             <div className="details">
               <Link to={`/profile/${post.userId}`} style={{ textDecoration: "none", color: "inherit" }}>
                 <span className="name">{post.name}</span>
@@ -67,24 +66,23 @@ const Post = ({ post }) => {
               <span className="date">{moment(post.createdAt).fromNow()}</span>
             </div>
           </div>
-          <MoreHorizIcon onClick={() => setMenuOpen(!menuOpen)} />
-          {menuOpen && post.userId === currentUser.id && <button onClick={handleDelete}>delete</button>}
+          <More onClick={() => setMenuOpen(!menuOpen)} />
+          {menuOpen && post.userId === currentUser.id && <button onClick={handleDelete}>Delete</button>}
         </div>
         <div className="content">
           <p>{post.desc}</p>
-          <img src={"/upload/" + post.img} alt="" />
+          <img src={"/upload/" + post.img} alt={`Image for post ${post.id}`} />
         </div>
         <div className="info">
           <div className="item">
-            {isLoading ? "loading" : data.includes(currentUser.id) ? <FavoriteOutlinedIcon style={{ color: "red" }} onClick={handleLike} /> : <FavoriteBorderOutlinedIcon onClick={handleLike} />}
+            {isLoading ? "loading" : data.includes(currentUser.id) ? <Liked style={{ color: "red" }} onClick={handleLike} /> : <NotLiked onClick={handleLike} />}
             {data?.length} Likes
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
-            <TextsmsOutlinedIcon />
-            See Comments
+            <Text />Comments
           </div>
           <div className="item">
-            <ShareOutlinedIcon />
+            <Share />
             Share
           </div>
         </div>
@@ -94,4 +92,4 @@ const Post = ({ post }) => {
   );
 };
 
-export default Post
+export default Post;

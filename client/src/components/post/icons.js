@@ -1,13 +1,7 @@
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
-import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
+import { default as NotLiked } from "@mui/icons-material/FavoriteBorderOutlined";
+import { default as Liked } from "@mui/icons-material/FavoriteOutlined";
+import { default as More } from "@mui/icons-material/MoreHoriz";
+import { default as Share } from "@mui/icons-material/ShareOutlined";
+import { default as Text } from "@mui/icons-material/TextsmsOutlined";
 
-export {
-  FavoriteBorderOutlinedIcon,
-  FavoriteOutlinedIcon,
-  MoreHorizIcon,
-  ShareOutlinedIcon,
-  TextsmsOutlinedIcon,
-};
+export { NotLiked, Liked, More, Share, Text };
