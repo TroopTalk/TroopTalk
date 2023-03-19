@@ -1,53 +1,38 @@
-import "./leftBar.scss";
-import Friends from "../../assets/1.png";
-import Groups from "../../assets/2.png";
-import Market from "../../assets/3.png";
-import Watch from "../../assets/4.png";
-import Memories from "../../assets/5.png";
-import Events from "../../assets/6.png";
-import Gaming from "../../assets/7.png";
-import Gallery from "../../assets/8.png";
-import Videos from "../../assets/9.png";
-import Messages from "../../assets/10.png";
-import Tutorials from "../../assets/11.png";
-import Courses from "../../assets/12.png";
-import Fund from "../../assets/13.png";
-import { AuthContext } from "../../context/authContext";
+import { courses, events, fund, friends, gallery, gaming, groups, market, memories, messages, tutorials, videos, watch } from "../../assets/img";
+import { authContext } from "../../context/export.js";
+
 import { useContext } from "react";
+import "./leftBar.scss";
 
 const LeftBar = () => {
-
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(authContext);
 
   return (
     <div className="leftBar">
       <div className="container">
         <div className="menu">
           <div className="user">
-            <img
-              src={"/upload/" +currentUser.profilePic}
-              alt=""
-            />
+            <img src={"/upload/" + currentUser.profilePic} alt={`${currentUser.name}'s profile picture`} />
             <span>{currentUser.name}</span>
           </div>
           <div className="item">
-            <img src={Friends} alt="" />
+            <img src={friends} alt="Friends icon" />
             <span>Friends</span>
           </div>
           <div className="item">
-            <img src={Groups} alt="" />
+            <img src={groups} alt="Groups icon" />
             <span>Groups</span>
           </div>
           <div className="item">
-            <img src={Market} alt="" />
+            <img src={market} alt="Marketplace icon" />
             <span>Marketplace</span>
           </div>
           <div className="item">
-            <img src={Watch} alt="" />
+            <img src={watch} alt="Watch icon" />
             <span>Watch</span>
           </div>
           <div className="item">
-            <img src={Memories} alt="" />
+            <img src={memories} alt="Memories icon" />
             <span>Memories</span>
           </div>
         </div>
@@ -55,23 +40,23 @@ const LeftBar = () => {
         <div className="menu">
           <span>Your shortcuts</span>
           <div className="item">
-            <img src={Events} alt="" />
+            <img src={events} alt="Events icon" />
             <span>Events</span>
           </div>
           <div className="item">
-            <img src={Gaming} alt="" />
+            <img src={gaming} alt="Gaming icon" />
             <span>Gaming</span>
           </div>
           <div className="item">
-            <img src={Gallery} alt="" />
+            <img src={gallery} alt="Gallery icon" />
             <span>Gallery</span>
           </div>
           <div className="item">
-            <img src={Videos} alt="" />
+            <img src={videos} alt="Videos icon" />
             <span>Videos</span>
           </div>
           <div className="item">
-            <img src={Messages} alt="" />
+            <img src={messages} alt="Messages icon" />
             <span>Messages</span>
           </div>
         </div>
@@ -79,15 +64,15 @@ const LeftBar = () => {
         <div className="menu">
           <span>Others</span>
           <div className="item">
-            <img src={Fund} alt="" />
+            <img src={fund} alt="Fundraiser icon" />
             <span>Fundraiser</span>
           </div>
           <div className="item">
-            <img src={Tutorials} alt="" />
+            <img src={tutorials} alt="Tutorials icon" />
             <span>Tutorials</span>
           </div>
           <div className="item">
-            <img src={Courses} alt="" />
+            <img src={courses} alt="Courses icon" />
             <span>Courses</span>
           </div>
         </div>
