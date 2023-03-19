@@ -1,2 +1,2 @@
-export const AuthContext = require("./authContext.js");
-export const DarkModeContext = require("./darkModeContext.js");
+export { AuthContext } from "./authContext";
+export { DarkModeContext } from "./darkModeContext";
