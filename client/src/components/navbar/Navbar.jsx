@@ -1,18 +1,18 @@
 import { HomeOutlinedIcon, DarkModeOutlinedIcon, WbSunnyOutlinedIcon, GridViewOutlinedIcon, NotificationsOutlinedIcon, EmailOutlinedIcon, PersonOutlinedIcon, SearchOutlinedIcon } from "./img.js";
-import { authContext, darkModeContext } from "../../context/export.js";
+import { AuthContext, DarkModeContext } from "../../context/export.js";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import "./navbar.scss";
 
 const Navbar = () => {
-  const { toggle, darkMode } = useContext(darkModeContext);
-  const { currentUser } = useContext(authContext);
+  const { toggle, darkMode } = useContext(DarkModeContext);
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <div className="navbar">
       <div className="left">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span>lamasocial</span>
+          <span>TroopTalk</span>
         </Link>
         <HomeOutlinedIcon />
         {darkMode ? <WbSunnyOutlinedIcon onClick={toggle} /> : <DarkModeOutlinedIcon onClick={toggle} />}

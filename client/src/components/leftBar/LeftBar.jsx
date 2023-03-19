@@ -1,11 +1,11 @@
 import { courses, events, fund, friends, gallery, gaming, groups, market, memories, messages, tutorials, videos, watch } from "../../assets/img";
-import { authContext } from "../../context/export.js";
+import { AuthContext } from "../../context/export.js";
 
 import { useContext } from "react";
 import "./leftBar.scss";
 
 const LeftBar = () => {
-  const { currentUser } = useContext(authContext);
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <div className="leftBar">
