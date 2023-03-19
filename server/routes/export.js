@@ -3,6 +3,7 @@ import commentRoutes from "./comments.js";
 import likeRoutes from "./likes.js";
 import postRoutes from "./posts.js";
 import relationshipRoutes from "./relationships.js";
+import storyRoutes from "./stories.js";
 import userRoutes from "./users.js";
 
 export default {
@@ -11,5 +12,6 @@ export default {
   likeRoutes,
   postRoutes,
   relationshipRoutes,
+  storyRoutes,
   userRoutes,
 };

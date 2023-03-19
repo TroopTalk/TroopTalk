@@ -1,5 +1,5 @@
 import { cookieParser, cors, dotenv, express } from "./packages.js";
-import Routes from "./routes/index.js";
+import Routes from "./routes/export.js";
 
 dotenv.config();
 const app = express();
@@ -17,13 +17,14 @@ app.use(
 );
 app.use(cookieParser());
 
-app.use("/api/auth", Routes.authRoutes);
-app.use("/api/comments", Routes.commentRoutes);
-app.use("/api/likes", Routes.likeRoutes);
-app.use("/api/posts", Routes.postRoutes);
-app.use("/api/relationships", Routes.relationshipRoutes);
-app.use("/api/users", Routes.userRoutes);
+app.use(process.env.AUTH_ROUTE, Routes.authRoutes);
+app.use(process.env.COMMENT_ROUTE, Routes.commentRoutes);
+app.use(process.env.LIKE_ROUTE, Routes.likeRoutes);
+app.use(process.env.POST_ROUTE, Routes.postRoutes);
+app.use(process.env.RELATIONSHIP_ROUTE, Routes.relationshipRoutes);
+app.use(process.env.STORY_ROUTE, Routes.storyRoutes);
+app.use(process.env.USER_ROUTE, Routes.userRoutes);
 
 app.listen(process.env.SERVER_PORT, () => {
-  console.log("API working!");
+  console.log("Server is UP!");
 });
