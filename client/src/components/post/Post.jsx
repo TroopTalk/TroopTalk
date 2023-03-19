@@ -1,17 +1,12 @@
-import "./post.scss";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
-import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { Link } from "react-router-dom";
-import Comments from "../comments/Comments";
-import { useState } from "react";
-import moment from "moment";
+import { FavoriteBorderOutlinedIcon, FavoriteOutlinedIcon, MoreHorizIcon, ShareOutlinedIcon, TextsmsOutlinedIcon } from "./icons.js";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
+import { Comments } from "../export.js";
+import { Link } from "react-router-dom";
 import { makeRequest } from "../../axios";
-import { useContext } from "react";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/export.js";
+import { useContext, useState } from "react";
+import moment from "moment";
+import "./post.scss";
 
 const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false);
@@ -22,7 +17,7 @@ const Post = ({ post }) => {
   const { isLoading, error, data } = useQuery(["likes", post.id], () =>
     makeRequest.get("/likes?postId=" + post.id).then((res) => {
       return res.data;
-    })
+    }),
   );
 
   const queryClient = useQueryClient();
@@ -37,7 +32,7 @@ const Post = ({ post }) => {
         // Invalidate and refetch
         queryClient.invalidateQueries(["likes"]);
       },
-    }
+    },
   );
   const deleteMutation = useMutation(
     (postId) => {
@@ -48,7 +43,7 @@ const Post = ({ post }) => {
         // Invalidate and refetch
         queryClient.invalidateQueries(["posts"]);
       },
-    }
+    },
   );
 
   const handleLike = () => {
@@ -64,21 +59,16 @@ const Post = ({ post }) => {
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={"/upload/"+post.profilePic} alt="" />
+            <img src={"/upload/" + post.profilePic} alt="" />
             <div className="details">
-              <Link
-                to={`/profile/${post.userId}`}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
+              <Link to={`/profile/${post.userId}`} style={{ textDecoration: "none", color: "inherit" }}>
                 <span className="name">{post.name}</span>
               </Link>
               <span className="date">{moment(post.createdAt).fromNow()}</span>
             </div>
           </div>
           <MoreHorizIcon onClick={() => setMenuOpen(!menuOpen)} />
-          {menuOpen && post.userId === currentUser.id && (
-            <button onClick={handleDelete}>delete</button>
-          )}
+          {menuOpen && post.userId === currentUser.id && <button onClick={handleDelete}>delete</button>}
         </div>
         <div className="content">
           <p>{post.desc}</p>
@@ -86,16 +76,7 @@ const Post = ({ post }) => {
         </div>
         <div className="info">
           <div className="item">
-            {isLoading ? (
-              "loading"
-            ) : data.includes(currentUser.id) ? (
-              <FavoriteOutlinedIcon
-                style={{ color: "red" }}
-                onClick={handleLike}
-              />
-            ) : (
-              <FavoriteBorderOutlinedIcon onClick={handleLike} />
-            )}
+            {isLoading ? "loading" : data.includes(currentUser.id) ? <FavoriteOutlinedIcon style={{ color: "red" }} onClick={handleLike} /> : <FavoriteBorderOutlinedIcon onClick={handleLike} />}
             {data?.length} Likes
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
