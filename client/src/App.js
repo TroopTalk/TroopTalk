@@ -1,8 +1,14 @@
 import { createBrowserRouter, RouterProvider, Outlet, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { AuthContext, DarkModeContext } from "./context/export.js";
-import { Home, Login, Profile, Register } from "./pages/export.js";
-import { LeftBar, Navbar, RightBar } from "./components/export.js";
+import { DarkModeContext } from "./context/darkModeContext";
+import { AuthContext } from "./context/authContext";
+import RightBar from "./components/rightBar/RightBar";
+import LeftBar from "./components/leftBar/LeftBar";
+import Register from "./pages/register/Register";
+import Navbar from "./components/navbar/Navbar";
+import Profile from "./pages/profile/Profile";
+import Login from "./pages/login/Login";
+import Home from "./pages/home/Home";
 import { useContext } from "react";
 import "./style.scss";
 
