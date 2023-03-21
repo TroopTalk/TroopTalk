@@ -58,7 +58,7 @@ const Post = ({ post }) => {
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={"/upload/" + post.profilePic} alt={`Profile picture for ${post.name}`} />
+            <img src={"/upload/" + post.profilePic} alt={`Profile pic for ${post.name}`} />
             <div className="details">
               <Link to={`/profile/${post.userId}`} style={{ textDecoration: "none", color: "inherit" }}>
                 <span className="name">{post.name}</span>
@@ -71,7 +71,7 @@ const Post = ({ post }) => {
         </div>
         <div className="content">
           <p>{post.desc}</p>
-          <img src={"/upload/" + post.img} alt={`Image for post ${post.id}`} />
+          <img src={"/upload/" + post.img} alt={`Pic for post ${post.id}`} />
         </div>
         <div className="info">
           <div className="item">
@@ -79,7 +79,8 @@ const Post = ({ post }) => {
             {data?.length} Likes
           </div>
           <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
-            <Text />Comments
+            <Text />
+            Comments
           </div>
           <div className="item">
             <Share />

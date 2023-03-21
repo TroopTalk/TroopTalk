@@ -49,7 +49,7 @@ const Share = () => {
       <div className="container">
         <div className="top">
           <div className="left">
-            <img src={`/upload/${currentUser.profilePic}`} alt={`${currentUser.name}'s profile picture`} />
+            <img src={`/upload/${currentUser.profilePic}`} alt={`${currentUser.name}'s profile pic`} />
             <input type="text" placeholder={`What's on your mind ${currentUser.name}?`} onChange={(e) => setDesc(e.target.value)} value={desc} />
           </div>
           <div className="right">{file && <img className="file" alt="Selected file preview" src={URL.createObjectURL(file)} />}</div>
@@ -60,7 +60,7 @@ const Share = () => {
             <input type="file" id="file" style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} />
             <label htmlFor="file">
               <div className="item">
-                <img src={image} alt="Add image icon" />
+                <img src={image} alt="Add img icon" />
                 <span>Add Image</span>
               </div>
             </label>
