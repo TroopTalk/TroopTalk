@@ -8,4 +8,4 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Logout from "@mui/icons-material/Logout"
 
-export { HomeOutlinedIcon, DarkModeOutlinedIcon, WbSunnyOutlinedIcon, GridViewOutlinedIcon, NotificationsOutlinedIcon, EmailOutlinedIcon, PersonOutlinedIcon, SearchOutlinedIcon, Logout };
+export { HomeOutlinedIcon, DarkModeOutlinedIcon, WbSunnyOutlinedIcon, GridViewOutlinedIcon, NotificationsOutlinedIcon, EmailOutlinedIcon, PersonOutlinedIcon, SearchOutlinedIcon, Logout ,};

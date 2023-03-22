@@ -35,13 +35,15 @@ const Navbar = () => {
       </div>
       <div className="right">
         <PersonOutlinedIcon />
-        <EmailOutlinedIcon />
+        <NavLink to={`/messages/${currentUser.id}`}>
+          <EmailOutlinedIcon />
+        </NavLink>
         <NotificationsOutlinedIcon />
         <div className="user">
           <img src={"/upload/" + currentUser.profilePic} alt="" />
           <span>{currentUser.name}</span>
         </div>
-        <NavLink className="logout" onClick={handleLogout} to="/login">
+        <NavLink className="logout" onClick={handleLogout}>
           <Logout />
         </NavLink>
       </div>
