@@ -1,5 +1,6 @@
 import { courses, events, fund, friends, gallery, gaming, groups, market, memories, messages, tutorials, videos, watch } from "../../assets/img";
 import { AuthContext } from "../../context/export.js";
+import { AccountCircle } from "@mui/icons-material";
 import { useContext } from "react";
 import "./leftBar.scss";
 
@@ -11,7 +12,7 @@ const LeftBar = () => {
       <div className="LEFT_BAR__container">
         <div className="LEFT_BAR__menu">
           <div className="LEFT_BAR__user">
-            <img src={"/upload/" + currentUser.profilePic} alt={`${currentUser.name}'s profile pic`} />
+            {currentUser.profilePic ? <img src={`/upload/${currentUser.profilePic}`} alt={`${currentUser.name}'s profile pic`} /> : <AccountCircle className="">{currentUser.name[0]}</AccountCircle>}
             <span>{currentUser.name}</span>
           </div>
           <div className="LEFT_BAR__item">

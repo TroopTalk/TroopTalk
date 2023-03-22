@@ -1,4 +1,4 @@
-import { AuthContext } from "../../context/authContext";
+import { AuthContext, DarkModeContext } from "../../context/export.js";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useState, useContext } from "react";
 import { makeRequest } from "../../axios";
@@ -6,6 +6,8 @@ import "./stories.scss";
 
 const Stories = () => {
   const { currentUser } = useContext(AuthContext);
+  const { toggle, darkMode } = useContext(DarkModeContext);
+  const darkLight = { color: darkMode ? "#fff" : "#000" };
 
   const { isLoading, error, data } = useQuery(["stories"], async () => {
     const res = await makeRequest.get("/api/stories/");
@@ -32,16 +34,16 @@ const Stories = () => {
         <input type="text" value={newStory} onChange={(e) => setNewStory(e.target.value)} />
         <button onClick={handleAddStory}>+</button>
       </div>
-      {error
-        ? "Something went wrong"
-        : isLoading
-        ? "loading"
-        : data.map((story) => (
-            <div className="STORIES__story" key={story.id}>
-              <img src={story.img} alt="" />
-              <span>{story.name}</span>
-            </div>
-          ))}
+      {error && <div style={darkLight}>Something went wrong</div>}
+      {isLoading && <div style={darkLight}>Loading...</div>}
+      {!isLoading &&
+        !error &&
+        data.map((story) => (
+          <div className="STORIES__story" key={story.id}>
+            <img src={story.img} alt="" />
+            <span>{story.name}</span>
+          </div>
+        ))}
     </div>
   );
 };

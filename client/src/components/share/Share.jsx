@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { map, image, friend } from "../../assets/img.js";
 import { AuthContext } from "../../context/export.js";
+import { AccountCircle } from "@mui/icons-material";
 import { useContext, useState } from "react";
 import { makeRequest } from "../../axios";
 import "./share.scss";
@@ -49,7 +50,7 @@ const Share = () => {
       <div className="SHARE__container">
         <div className="SHARE__top">
           <div className="SHARE__left">
-            <img src={`/upload/${currentUser.profilePic}`} alt={`${currentUser.name}'s profile pic`} />
+            {currentUser.profilePic ? <img src={`/upload/${currentUser.profilePic}`} alt={`${currentUser.name}'s profile pic`} /> : <AccountCircle>{currentUser.name[0]}</AccountCircle>}
             <input type="text" placeholder={`What's on your mind ${currentUser.name}?`} onChange={(e) => setDesc(e.target.value)} value={desc} />
           </div>
           <div className="SHARE__right">{file && <img className="SHARE__file" alt="Selected file preview" src={URL.createObjectURL(file)} />}</div>

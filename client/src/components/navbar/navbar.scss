@@ -11,7 +11,7 @@
     position: sticky;
     top: 0;
     background-color: themed("bg");
-    color:themed("textColor");
+    color: themed("textColor");
     z-index: 999;
 
     .NAVBAR__left {
@@ -39,11 +39,11 @@
           background-color: transparent;
           color: themed("textColor");
 
-          @include mobile{
+          @include mobile {
             display: none;
           }
 
-          @include tablet{
+          @include tablet {
             width: 200px;
           }
         }
@@ -55,7 +55,7 @@
       align-items: center;
       gap: 20px;
 
-      @include mobile{
+      @include mobile {
         display: none;
       }
 
@@ -65,11 +65,12 @@
         gap: 10px;
         font-weight: 500;
 
-        @include tablet{
+        @include tablet {
           display: none;
         }
 
-        img {
+        img,
+        svg {
           width: 30px;
           height: 30px;
           border-radius: 50%;

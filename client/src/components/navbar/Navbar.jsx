@@ -1,7 +1,8 @@
 import { HomeOutlinedIcon, DarkModeOutlinedIcon, WbSunnyOutlinedIcon, GridViewOutlinedIcon, NotificationsOutlinedIcon, EmailOutlinedIcon, PersonOutlinedIcon, SearchOutlinedIcon, Logout } from "./img.js";
 import { AuthContext, DarkModeContext } from "../../context/export.js";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
+import { AccountCircle } from "@mui/icons-material";
 import "./navbar.scss";
 
 const Navbar = () => {
@@ -42,7 +43,7 @@ const Navbar = () => {
         </NavLink>
         <NotificationsOutlinedIcon />
         <div className="NAVBAR__user">
-          <img src={"/upload/" + currentUser.profilePic} alt="" />
+          {currentUser.profilePic ? <img src={`/upload/${currentUser.profilePic}`} alt={`${currentUser.name}'s profile pic`} /> : <AccountCircle>{currentUser.name[0]}</AccountCircle>}
           <span>{currentUser.name}</span>
         </div>
         <NavLink className="NAVBAR__logout" onClick={handleLogout}>
