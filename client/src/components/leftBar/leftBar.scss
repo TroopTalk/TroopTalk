@@ -42,15 +42,24 @@
           align-items: center;
           gap: 10px;
 
-          img, svg {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            object-fit: cover;
-          }
+          a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: inherit;
 
-          span {
-            font-size: 14px;
+            img,
+            svg {
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              object-fit: cover;
+            }
+
+            span {
+              font-size: 14px;
+            }
           }
         }
 
@@ -59,15 +68,39 @@
           align-items: center;
           gap: 10px;
 
-          img {
-            width: 30px;
-          }
+          a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: inherit;
 
-          span {
-            font-size: 14px;
+            img {
+              width: 30px;
+            }
+
+            span {
+              font-size: 14px;
+            }
           }
         }
       }
     }
   }
 }
+
+// .Link {
+//   display: flex;
+//   align-items: center;
+//   gap: 10px;
+//   text-decoration: none;
+//   color: inherit;
+// }
+
+// .Link img {
+//   width: 30px;
+// }
+
+// .Link span {
+//   font-size: 14px;
+// }
