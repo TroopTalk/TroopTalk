@@ -1,6 +1,6 @@
 // import { bcrypt, crypto, dotenv, jwt } from "../packages.js";
 import bcrypt from "bcryptjs";
-import crypto from "crypto";
+// import crypto from "crypto";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import { db } from "../connect.js";
@@ -38,14 +38,15 @@ export const login = (req, res) => {
     const checkPassword = bcrypt.compareSync(req.body.password, data[0].password);
     if (!checkPassword) return res.status(400).json("Wrong password or username!");
 
-    const secret = crypto.randomBytes(16).toString(process.env.AUTH_ENCODING); // Generate a random 16-byte secret key
-    const token = jwt.sign({ id: data[0].id }, secret); // Use the secret key to sign the JWT
+    const token = jwt.sign({ id: data[0].id }, process.env.JWT_SECRET); // Use the JWT_SECRET to sign the JWT
 
     const { password, ...others } = data[0];
 
     res
       .cookie(process.env.AUTH_TOKEN, token, {
         httpOnly: true,
+        secure: true,
+        sameSite: "strict",
       })
       .status(200)
       .json(others);
