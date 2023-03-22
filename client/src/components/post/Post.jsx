@@ -1,10 +1,10 @@
 import { NotLiked, Liked, More, Share, Text } from "./icons.js";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
-import { Comments } from "../export.js";
-import { Link } from "react-router-dom";
-import { makeRequest } from "../../axios";
 import { AuthContext } from "../../context/export.js";
 import { useContext, useState } from "react";
+import { makeRequest } from "../../axios";
+import { Comments } from "../export.js";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import "./post.scss";
 
@@ -54,35 +54,35 @@ const Post = ({ post }) => {
   };
 
   return (
-    <div className="post">
-      <div className="container">
-        <div className="user">
-          <div className="userInfo">
+    <div className="POST__">
+      <div className="POST__container">
+        <div className="POST__user">
+          <div className="POST__userInfo">
             <img src={"/upload/" + post.profilePic} alt={`Profile pic for ${post.name}`} />
-            <div className="details">
+            <div className="POST__details">
               <Link to={`/profile/${post.userId}`} style={{ textDecoration: "none", color: "inherit" }}>
-                <span className="name">{post.name}</span>
+                <span className="POST__name">{post.name}</span>
               </Link>
-              <span className="date">{moment(post.createdAt).fromNow()}</span>
+              <span className="POST__date">{moment(post.createdAt).fromNow()}</span>
             </div>
           </div>
           <More onClick={() => setMenuOpen(!menuOpen)} />
           {menuOpen && post.userId === currentUser.id && <button onClick={handleDelete}>Delete</button>}
         </div>
-        <div className="content">
+        <div className="POST__content">
           <p>{post.desc}</p>
           <img src={"/upload/" + post.img} alt={`Pic for post ${post.id}`} />
         </div>
-        <div className="info">
-          <div className="item">
+        <div className="POST__info">
+          <div className="POST__item">
             {isLoading ? "loading" : data.includes(currentUser.id) ? <Liked style={{ color: "red" }} onClick={handleLike} /> : <NotLiked onClick={handleLike} />}
             {data?.length} Likes
           </div>
-          <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
+          <div className="POST__item" onClick={() => setCommentOpen(!commentOpen)}>
             <Text />
             Comments
           </div>
-          <div className="item">
+          <div className="POST__item">
             <Share />
             Share
           </div>

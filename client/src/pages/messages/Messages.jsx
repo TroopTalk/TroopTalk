@@ -1,8 +1,8 @@
-import { Posts, Share, Stories } from "../../components/export.js";
+import React from "react";
 
 const Messages = () => {
   return (
-    <div className="home">
+    <div className="MESSAGES__">
     </div>
   );
 };

@@ -1,6 +1,6 @@
 @import "../../style.scss";
 
-.rightBar {
+.RIGHT_BAR__ {
   @include themify($themes) {
     flex: 3;
     position: sticky;
@@ -9,10 +9,10 @@
     overflow: scroll;
     background-color: themed("bgSoft");
 
-    @include mobile{
+    @include mobile {
       display: none;
     }
-    @include tablet{
+    @include tablet {
       display: none;
     }
 
@@ -20,10 +20,10 @@
       display: none;
     }
 
-    .container {
+    .RIGHT_BAR__container {
       padding: 20px;
 
-      .item {
+      .RIGHT_BAR__item {
         -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
         -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
         box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
@@ -35,13 +35,13 @@
           color: gray;
         }
 
-        .user {
+        .RIGHT_BAR__user {
           display: flex;
           align-items: center;
           justify-content: space-between;
           margin: 20px 0px;
 
-          .userInfo {
+          .RIGHT_BAR__userInfo {
             display: flex;
             align-items: center;
             gap: 20px;
@@ -54,7 +54,7 @@
               object-fit: cover;
             }
 
-            .online {
+            .RIGHT_BAR__online {
               width: 12px;
               height: 12px;
               border-radius: 50%;
@@ -74,7 +74,7 @@
             }
           }
 
-          .buttons {
+          .RIGHT_BAR__buttons {
             display: flex;
             align-items: center;
             gap: 10px;

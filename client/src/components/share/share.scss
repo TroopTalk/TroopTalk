@@ -1,6 +1,6 @@
 @import "../../style.scss";
 
-.share {
+.SHARE__ {
   @include themify($themes) {
     -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
     -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
@@ -10,14 +10,14 @@
     color: themed("textColor");
     margin-bottom: 20px;
 
-    .container {
+    .SHARE__container {
       padding: 20px;
-      .top {
+      .SHARE__top {
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        .left {
+        .SHARE__left {
           display: flex;
           align-items: center;
           flex: 3;
@@ -37,11 +37,11 @@
             color: themed("textColor");
           }
         }
-        .right {
+        .SHARE__right {
           flex: 1;
           display: flex;
           justify-content: flex-end;
-          .file {
+          .SHARE__file {
             width: 100px;
             height: 100px;
             object-fit: cover;
@@ -57,16 +57,16 @@
         background-color: themed("border");
       }
 
-      .bottom {
+      .SHARE__bottom {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        .left {
+        .SHARE__left {
           display: flex;
           align-items: center;
           gap: 20px;
 
-          .item {
+          .SHARE__item {
             display: flex;
             align-items: center;
             gap: 10px;
@@ -82,7 +82,7 @@
             }
           }
         }
-        .right {
+        .SHARE__right {
           button {
             border: none;
             padding: 5px;

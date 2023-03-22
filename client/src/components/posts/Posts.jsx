@@ -12,7 +12,7 @@ const Posts = ({ userId }) => {
 
   return (
     <>
-      <div className="posts">{error ? "Something went wrong!" : isLoading ? "loading" : data.map((post) => <Post post={post} key={post.id} />)}</div>
+      <div className="POSTS_">{error ? "Something went wrong!" : isLoading ? "loading" : data.map((post) => <Post post={post} key={post.id} />)}</div>
     </>
   );
 };

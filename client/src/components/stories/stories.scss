@@ -1,6 +1,6 @@
 @import "../../style.scss";
 
-.stories {
+.STORIES__ {
   display: flex;
   gap: 10px;
   height: 250px;
@@ -17,7 +17,7 @@
     gap: 20px;
   }
 
-  .story {
+  .STORIES__story {
     flex: 1;
     border-radius: 10px;
     overflow: hidden;

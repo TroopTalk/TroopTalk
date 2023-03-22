@@ -1,11 +1,11 @@
-.register {
+.REGISTER__ {
   height: 100vh;
   background-color: rgba(0 0 0 / 1);
   display: flex;
   align-items: center;
   justify-content: center;
 
-  .card {
+  .REGISTER__card {
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
@@ -14,7 +14,7 @@
     min-height: 600px;
     overflow: hidden;
 
-    .left {
+    .REGISTER__left {
       flex: 1;
       background: linear-gradient(rgba(0 0 0 / 0), rgba(0 0 0 / 1)), url("https://images.pexels.com/photos/4881619/pexels-photo-4881619.jpeg?auto=compress&cs=tinysrgb&w=1600") center;
       background-size: cover;
@@ -47,7 +47,7 @@
       }
     }
 
-    .right {
+    .REGISTER__right {
       flex: 1;
       padding: 50px;
       display: flex;

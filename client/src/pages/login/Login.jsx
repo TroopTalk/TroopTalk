@@ -29,9 +29,9 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <div className="card">
-        <div className="left">
+    <div className="LOGIN__">
+      <div className="LOGIN__card">
+        <div className="LOGIN__left">
           <h1>Troop Talk</h1>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum, alias totam numquam ipsa exercitationem dignissimos, error nam, consequatur.</p>
           <span>Don't you have an account?</span>
@@ -39,7 +39,7 @@ const Login = () => {
             <button>Register</button>
           </Link>
         </div>
-        <div className="right">
+        <div className="LOGIN__right">
           <h1>Login</h1>
           <form>
             <input type="text" placeholder="Username" name="username" onChange={handleChange} />

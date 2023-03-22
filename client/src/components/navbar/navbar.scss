@@ -1,6 +1,6 @@
 @import "../../style.scss";
 
-.navbar {
+.NAVBAR__ {
   @include themify($themes) {
     display: flex;
     align-items: center;
@@ -14,7 +14,7 @@
     color:themed("textColor");
     z-index: 999;
 
-    .left {
+    .NAVBAR__left {
       display: flex;
       align-items: center;
       gap: 30px;
@@ -25,7 +25,7 @@
         color: themed("logo");
       }
 
-      .search {
+      .NAVBAR__search {
         display: flex;
         align-items: center;
         gap: 10px;
@@ -50,7 +50,7 @@
       }
     }
 
-    .right {
+    .NAVBAR__right {
       display: flex;
       align-items: center;
       gap: 20px;
@@ -59,7 +59,7 @@
         display: none;
       }
 
-      .user {
+      .NAVBAR__user {
         display: flex;
         align-items: center;
         gap: 10px;

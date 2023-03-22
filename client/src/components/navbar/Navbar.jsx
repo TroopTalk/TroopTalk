@@ -8,7 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { toggle, darkMode } = useContext(DarkModeContext);
   const { currentUser, logout } = useContext(AuthContext);
-  const [unreadNotifications, setUnreadNotifications] = useState([]);
+  // const [unreadNotifications, setUnreadNotifications] = useState([]);
 
   const handleLogout = async () => {
     try {
@@ -19,32 +19,34 @@ const Navbar = () => {
     }
   };
 
+  const darkLight = { color: darkMode ? "#fff" : "#000" };
+
   return (
-    <div className="navbar">
-      <div className="left">
+    <div className="NAVBAR__">
+      <div className="NAVBAR__left">
         <Link to="/" style={{ textDecoration: "none" }}>
           <span>TroopTalk</span>
         </Link>
         <HomeOutlinedIcon />
         {darkMode ? <WbSunnyOutlinedIcon onClick={toggle} /> : <DarkModeOutlinedIcon onClick={toggle} />}
         <GridViewOutlinedIcon />
-        <div className="search">
+        <div className="NAVBAR__search">
           <SearchOutlinedIcon />
           <input type="text" placeholder="Search..." />
         </div>
       </div>
-      <div className="right">
+      <div className="NAVBAR__right">
         <PersonOutlinedIcon />
         <NavLink to={`/messages/${currentUser.id}`}>
-          <EmailOutlinedIcon />
+          <EmailOutlinedIcon style={darkLight} />
         </NavLink>
         <NotificationsOutlinedIcon />
-        <div className="user">
+        <div className="NAVBAR__user">
           <img src={"/upload/" + currentUser.profilePic} alt="" />
           <span>{currentUser.name}</span>
         </div>
-        <NavLink className="logout" onClick={handleLogout}>
-          <Logout />
+        <NavLink className="NAVBAR__logout" onClick={handleLogout}>
+          <Logout style={darkLight} />
         </NavLink>
       </div>
     </div>

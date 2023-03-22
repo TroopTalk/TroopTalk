@@ -31,9 +31,9 @@ const Register = () => {
   };
 
   return (
-    <div className="register">
-      <div className="card">
-        <div className="left">
+    <div className="REGISTER__">
+      <div className="REGISTER__card">
+        <div className="REGISTER__left">
           <h1>Troop Talk</h1>
           <p>Welcome to TroopTalk, a place for veterans to come together and socialize with each other!</p>
           <span>Do you have an account?</span>
@@ -41,14 +41,14 @@ const Register = () => {
             <button>Login</button>
           </Link>
         </div>
-        <div className="right">
+        <div className="REGISTER__right">
           <h1>Register</h1>
           <form>
             <input type="text" placeholder="Username" name="username" onChange={handleChange} />
             <input type="email" placeholder="Email" name="email" onChange={handleChange} />
             <input type="password" placeholder="Password" name="password" onChange={handleChange} />
             <input type="text" placeholder="Name" name="name" onChange={handleChange} />
-            {err && <div className="error">{err}</div>}
+            {err && <div className="REGISTER__error">{err}</div>}
             <button onClick={handleClick}>Register</button>
           </form>
         </div>
