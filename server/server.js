@@ -1,4 +1,9 @@
-import { cookieParser, cors, dotenv, express } from "./packages.js";
+// import { cookieParser, cors, dotenv, express } from "./packages.js";
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+
 import Routes from "./routes/export.js";
 
 dotenv.config();
@@ -8,13 +13,11 @@ app.use(express.json());
 //middlewares
 app.use((req, res, next) => {
   res.header(process.env.CORS_MSG, true);
-  next();
-});
-app.use(
   cors({
     origin: process.env.CORS_ORG,
-  }),
-);
+  })(req, res, next);
+});
+
 app.use(cookieParser());
 
 app.use(process.env.AUTH_ROUTE, Routes.authRoutes);

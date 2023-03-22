@@ -25,7 +25,8 @@ const Register = () => {
       await axios.post(API, inputs);
       navigate("/login");
     } catch (err) {
-      setErr(err.response.data);
+      const errorMessage = err.response.data.sqlMessage; // or whatever field contains the error message
+      setErr(errorMessage);
     }
   };
 
@@ -47,7 +48,7 @@ const Register = () => {
             <input type="email" placeholder="Email" name="email" onChange={handleChange} />
             <input type="password" placeholder="Password" name="password" onChange={handleChange} />
             <input type="text" placeholder="Name" name="name" onChange={handleChange} />
-            {err && err}
+            {err && <div className="error">{err}</div>}
             <button onClick={handleClick}>Register</button>
           </form>
         </div>
