@@ -31,25 +31,37 @@ export const register = (req, res) => {
 export const login = (req, res) => {
   const q = "SELECT * FROM users WHERE username = ?";
 
-  db.query(q, [req.body.username], (err, data) => {
-    if (err) return res.status(500).json(err);
-    if (data.length === 0) return res.status(404).json("User not found!");
+  console.log("Login function called"); // Add this log statement
 
-    const checkPassword = bcrypt.compareSync(req.body.password, data[0].password);
-    if (!checkPassword) return res.status(400).json("Wrong password or username!");
+  db.query(q, [req.body.username], async (err, data) => {
+    console.log("Inside db query callback"); // Add this log statement
 
-    const token = jwt.sign({ id: data[0].id }, process.env.JWT_SECRET); // Use the JWT_SECRET to sign the JWT
+    try {
+      if (err) {
+        console.log("Error during DB query:", err); // Add this log statement
+        return res.status(500).json(err);
+      }
+      if (data.length === 0) return res.status(404).json("User not found!");
 
-    const { password, ...others } = data[0];
+      const checkPassword = await bcrypt.compare(req.body.password, data[0].password);
+      if (!checkPassword) return res.status(400).json("Wrong password or username!");
 
-    res
-      .cookie(process.env.AUTH_TOKEN, token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "strict",
-      })
-      .status(200)
-      .json(others);
+      const token = jwt.sign({ id: data[0].id }, process.env.JWT_SECRET); // Use the JWT_SECRET to sign the JWT
+
+      const { password, ...others } = data[0];
+
+      res
+        .cookie(process.env.AUTH_TOKEN, token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "strict",
+        })
+        .status(200)
+        .json(others);
+    } catch (error) {
+      console.error("Error during login:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
   });
 };
 

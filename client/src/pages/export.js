@@ -3,3 +3,4 @@ export { default as Login } from "./login/Login";
 export { default as Profile } from "./profile/Profile";
 export { default as Register } from "./register/Register";
 export { default as Messages } from "./messages/Messages";
+export { default as Friends } from "./friends/Friends";

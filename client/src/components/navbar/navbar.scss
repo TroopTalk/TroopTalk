@@ -28,16 +28,22 @@
       .NAVBAR__search {
         display: flex;
         align-items: center;
+        height: 100%;
         gap: 10px;
         border: 1px solid themed("border");
         border-radius: 5px;
-        padding: 5px;
+
+        svg {
+          padding: 5px;
+        }
 
         input {
-          border: none;
+          height: 2em;
           width: 500px;
-          background-color: transparent;
           color: themed("textColor");
+          background-color: transparent;
+          border: none;
+          outline: none;
 
           @include mobile {
             display: none;
@@ -55,6 +61,12 @@
       align-items: center;
       gap: 20px;
 
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
       @include mobile {
         display: none;
       }
@@ -71,13 +83,10 @@
 
         img,
         svg {
-          width: 30px;
           height: 30px;
+          width: 30px;
           border-radius: 50%;
           object-fit: cover;
-        }
-
-        span {
         }
       }
     }

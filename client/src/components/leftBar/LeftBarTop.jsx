@@ -35,6 +35,11 @@ const menuItems = [
 const LeftBarTop = () => {
   const { currentUser } = useContext(AuthContext);
 
+  if (!currentUser || typeof currentUser !== "object" || !currentUser.hasOwnProperty("name")) {
+    console.error("Invalid currentUser:", currentUser);
+    return null;
+  }
+
   return (
     <div className="LEFT_BAR__menu">
       <div className="LEFT_BAR__user">
@@ -44,12 +49,12 @@ const LeftBarTop = () => {
         </Link>
       </div>
       {menuItems.map((item) => (
-        <div className="LEFT_BAR__item" key={item.label}>
-          <Link to={item.path}>
+        <Link to={item.path}>
+          <div className="LEFT_BAR__item" key={item.label}>
             <img src={item.icon} alt={`${item.label} icon`} />
             <span>{item.label}</span>
-          </Link>
-        </div>
+          </div>
+        </Link>
       ))}
     </div>
   );

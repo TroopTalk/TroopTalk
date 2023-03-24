@@ -2,6 +2,7 @@
 
 .STORIES__ {
   display: flex;
+  flex-direction: column;
   gap: 10px;
   height: 250px;
   margin-bottom: 30px;

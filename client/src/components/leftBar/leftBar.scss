@@ -19,7 +19,7 @@
     }
 
     .LEFT_BAR__container {
-      padding: 20px;
+      padding: 8px;
 
       hr {
         margin: 20px 0px;
@@ -41,6 +41,7 @@
           display: flex;
           align-items: center;
           gap: 10px;
+          padding: 8px;
 
           a {
             display: flex;
@@ -63,44 +64,42 @@
           }
         }
 
-        .LEFT_BAR__item {
+        a {
           display: flex;
-          align-items: center;
+          justify-content: flex-start;
+          align-items: flex-start;
           gap: 10px;
+          text-decoration: none;
+          color: inherit;
+          filter: contrast(1.5);
+          border-radius: 5px;
+          transition: 250ms ease-in-out;
 
-          a {
+          .LEFT_BAR__item {
             display: flex;
             align-items: center;
             gap: 10px;
-            text-decoration: none;
-            color: inherit;
+            padding: 0.5em;
 
             img {
               width: 30px;
             }
 
             span {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
               font-size: 14px;
             }
+          }
+
+          &:hover {
+            outline: 1px solid gray;
+            scale: 102%;
           }
         }
       }
     }
   }
 }
-
-// .Link {
-//   display: flex;
-//   align-items: center;
-//   gap: 10px;
-//   text-decoration: none;
-//   color: inherit;
-// }
-
-// .Link img {
-//   width: 30px;
-// }
-
-// .Link span {
-//   font-size: 14px;
-// }

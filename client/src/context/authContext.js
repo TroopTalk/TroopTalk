@@ -13,13 +13,26 @@ export const AuthContextProvider = ({ children }) => {
 
   const login = async (inputs) => {
     const API = process.env.REACT_APP_AUTH_LOGIN_API;
-    const res = await axios.post(API, inputs, {
-      withCredentials: true,
-    });
-
-    setCurrentUser(res.data);
-    localStorage.setItem("user", JSON.stringify(res.data));
+    try {
+      const res = await axios.post(API, inputs, {
+        withCredentials: true,
+      });
+  
+      console.log("Server response:", res); // Add this line to log the server response
+  
+      if (res.status === 200) {
+        setCurrentUser(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        console.log("Logged in successfully");
+      } else {
+        // Handle error messages returned by the server
+        console.log("Error during login:", res.data);
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
   };
+  
 
   const logout = async () => {
     try {

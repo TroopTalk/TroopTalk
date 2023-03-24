@@ -29,12 +29,12 @@ const LeftBarMid = () => {
     <div className="LEFT_BAR__menu">
       <span>Your shortcuts</span>
       {menuItems.map((item) => (
-        <div className="LEFT_BAR__item" key={item.label}>
-          <Link to={item.path}>
+        <Link to={item.path}>
+          <div className="LEFT_BAR__item" key={item.label}>
             <img src={item.icon} alt={`${item.label} icon`} />
             <span>{item.label}</span>
-          </Link>
-        </div>
+          </div>
+        </Link>
       ))}
     </div>
   );
