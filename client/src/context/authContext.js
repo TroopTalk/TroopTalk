@@ -32,7 +32,6 @@ export const AuthContextProvider = ({ children }) => {
       console.error("Error during login:", error);
     }
   };
-  
 
   const logout = async () => {
     try {

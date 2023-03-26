@@ -31,10 +31,10 @@ export const register = (req, res) => {
 export const login = (req, res) => {
   const q = "SELECT * FROM users WHERE username = ?";
 
-  console.log("Login function called"); // Add this log statement
+  console.log(`Login request received for user ${req.body.username}`);
 
   db.query(q, [req.body.username], async (err, data) => {
-    console.log("Inside db query callback"); // Add this log statement
+    console.log(`Querying data base for ${req.body.username}`); 
 
     try {
       if (err) {
@@ -63,6 +63,7 @@ export const login = (req, res) => {
       res.status(500).json({ message: "Internal server error" });
     }
   });
+  console.log(`Login request for user ${req.body.username} completed.`)
 };
 
 export const logout = (req, res) => {

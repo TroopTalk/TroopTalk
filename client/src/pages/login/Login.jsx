@@ -20,8 +20,11 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    console.log("handleLogin called");
     try {
       await login(inputs);
+      console.log("Login successful");
+      console.log("Navigating to /"); // Add this line
       navigate("/");
     } catch (err) {
       setErr(err.response.data);
@@ -41,11 +44,11 @@ const Login = () => {
         </div>
         <div className="LOGIN__right">
           <h1>Login</h1>
-          <form>
+          <form onSubmit={handleLogin}>
             <input type="text" placeholder="Username" name="username" onChange={handleChange} />
             <input type="password" placeholder="Password" name="password" onChange={handleChange} />
             {err && err}
-            <button onClick={handleLogin}>Login</button>
+            <button type="submit">Login</button>
           </form>
         </div>
       </div>
