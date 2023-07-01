@@ -35,7 +35,7 @@ const Post = ({ post }) => {
   );
   const deleteMutation = useMutation(
     (postId) => {
-      return makeRequest.delete("/posts/" + postId);
+      return makeRequest.delete("/posts/delete/" + postId);
     },
     {
       onSuccess: () => {
