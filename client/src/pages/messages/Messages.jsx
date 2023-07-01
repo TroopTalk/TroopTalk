@@ -1,11 +1,11 @@
-import { useContext } from "react";
-import { AuthContext } from "../../context/export.js";
-import { Link } from "react-router-dom";
-import moment from "moment";
+// import { useContext } from "react";
+// import { AuthContext } from "../../context/export.js";
+// import { Link } from "react-router-dom";
+// import moment from "moment";
 import "./messages.scss";
 
 const Messages = ({ message }) => {
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
   if (!message) {
     return null; // Return null if the message object is not defined
   }
