@@ -3,16 +3,16 @@ import { makeRequest } from "../../axios";
 import { Post } from "../export.js";
 import "./posts.scss";
 
-const Posts = ({ userId }) => {
+const Posts = () => {
   const { isLoading, error, data } = useQuery(["posts"], () =>
-    makeRequest.get(`/posts?userId=${userId}`).then((res) => {
+    makeRequest.get(`/posts/get`).then((res) => {
       return res.data;
     }),
   );
 
   return (
     <>
-      <div className="posts">{error ? "Something went wrong!" : isLoading ? "loading" : data.map((post) => <Post post={post} key={post.id} />)}</div>
+      <div className="POSTS_">{error ? "Something went wrong!" : isLoading ? "loading" : data.map((post) => <Post post={post} key={post.id} />)}</div>
     </>
   );
 };

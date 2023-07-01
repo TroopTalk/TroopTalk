@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 body {
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -14,9 +17,9 @@ $themes: (
   ),
   dark: (
     textColor: whitesmoke,
-    bg: #222,
+    bg: #181818,
     logo: white,
-    bgSoft: #333,
+    bgSoft: #2a2a2a,
     textColorSoft: lightgray,
     border: #444,
   ),

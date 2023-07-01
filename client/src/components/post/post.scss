@@ -1,6 +1,6 @@
 @import "../../style.scss";
 
-.post {
+.POST__ {
   @include themify($themes) {
     -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
     -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
@@ -9,16 +9,16 @@
     background-color: themed("bg");
     color: themed("textColor");
 
-    .container {
+    .POST__container {
       padding: 20px;
 
-      .user {
+      .POST__user {
         display: flex;
         align-items: center;
         justify-content: space-between;
         position: relative;
 
-        .userInfo {
+        .POST__userInfo {
           display: flex;
           gap: 20px;
 
@@ -29,15 +29,15 @@
             object-fit: cover;
           }
 
-          .details {
+          .POST__details {
             display: flex;
             flex-direction: column;
 
-            .name {
+            .POST__name {
               font-weight: 500;
             }
 
-            .date {
+            .POST__date {
               font-size: 12px;
             }
           }
@@ -54,7 +54,7 @@
         }
       }
 
-      .content {
+      .POST__content {
         margin: 20px 0px;
 
         img {
@@ -65,12 +65,12 @@
         }
       }
 
-      .info {
+      .POST__info {
         display: flex;
         align-items: center;
         gap: 20px;
 
-        .item {
+        .POST__item {
           display: flex;
           align-items: center;
           gap: 10px;

@@ -1,6 +1,6 @@
 @import "../../style.scss";
 
-.update {
+.UPDATE__ {
   @include themify($themes) {
     position: fixed;
     top: 0;
@@ -13,7 +13,7 @@
     justify-content: center;
     z-index: 999;
 
-    .wrapper {
+    .UPDATE__wrapper {
       margin: auto;
       width: 40%;
       height: 70%;
@@ -47,7 +47,7 @@
         flex-direction: column;
         gap: 20px;
 
-        .files {
+        .UPDATE__files {
           display: flex;
           flex-wrap: wrap;
           gap: 50px;
@@ -60,7 +60,7 @@
           color: gray;
           font-size: 14px;
 
-          .imgContainer {
+          .UPDATE__imgContainer {
             position: relative;
             img {
               width: 100px;
@@ -68,7 +68,7 @@
               object-fit: cover;
             }
 
-            .icon {
+            .UPDATE__icon {
               position: absolute;
               top: 0;
               bottom: 0;
@@ -99,7 +99,7 @@
         }
       }
 
-      .close {
+      .UPDATE__close {
         position: absolute;
         top: 10px;
         right: 20px;

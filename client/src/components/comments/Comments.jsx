@@ -36,8 +36,8 @@ const Comments = ({ postId }) => {
   };
 
   return (
-    <div className="comments">
-      <div className="write">
+    <div className="COMMENTS__">
+      <div className="COMMENTS__write">
         <img src={"/upload/" + currentUser.profilePic} alt="" />
         <input type="text" placeholder="write a comment" value={desc} onChange={(e) => setDesc(e.target.value)} />
         <button onClick={handleClick}>Send</button>
@@ -47,13 +47,13 @@ const Comments = ({ postId }) => {
         : isLoading
         ? "loading"
         : data.map((comment) => (
-            <div className="comment">
+            <div className="COMMENTS__comment">
               <img src={"/upload/" + comment.profilePic} alt="" />
-              <div className="info">
+              <div className="COMMENTS__info">
                 <span>{comment.name}</span>
                 <p>{comment.desc}</p>
               </div>
-              <span className="date">{moment(comment.createdAt).fromNow()}</span>
+              <span className="COMMENTS__date">{moment(comment.createdAt).fromNow()}</span>
             </div>
           ))}
     </div>

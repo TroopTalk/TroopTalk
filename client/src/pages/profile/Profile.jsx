@@ -45,18 +45,18 @@ const Profile = () => {
   };
 
   return (
-    <div className="profile">
+    <div className="PROFILE__">
       {isLoading ? (
         "loading"
       ) : (
         <>
-          <div className="images">
-            <img src={"/upload/" + data.coverPic} alt="" className="cover" />
-            <img src={"/upload/" + data.profilePic} alt="" className="profilePic" />
+          <div className="PROFILE__images">
+            <img src={"/upload/" + data.coverPic} alt="" className="PROFILE__cover" />
+            <img src={"/upload/" + data.profilePic} alt="" className="PROFILE__profilePic" />
           </div>
-          <div className="profileContainer">
-            <div className="uInfo">
-              <div className="left">
+          <div className="PROFILE__profileContainer">
+            <div className="PROFILE__uInfo">
+              <div className="PROFILE__left">
                 <Link to={{ pathname: "https://www.facebook.com" }} target="_blank">
                   <FacebookTwoToneIcon fontSize="large" />
                 </Link>
@@ -73,21 +73,21 @@ const Profile = () => {
                   <PinterestIcon fontSize="large" />
                 </Link>
               </div>
-              <div className="center">
+              <div className="PROFILE__center">
                 <span>{data.name}</span>
-                <div className="info">
-                  <div className="item">
+                <div className="PROFILE__info">
+                  <div className="PROFILE__item">
                     <PlaceIcon />
                     <span>{data.city}</span>
                   </div>
-                  <div className="item">
+                  <div className="PROFILE__item">
                     <LanguageIcon />
                     <span>{data.website}</span>
                   </div>
                 </div>
                 {rIsLoading ? "loading" : userId === currentUser.id ? <button onClick={() => setOpenUpdate(true)}>update</button> : <button onClick={handleFollow}>{relationshipData.includes(currentUser.id) ? "Following" : "Follow"}</button>}
               </div>
-              <div className="right">
+              <div className="PROFILE__right">
                 <EmailOutlinedIcon />
                 <MoreVertIcon />
               </div>

@@ -62,24 +62,24 @@ const Update = ({ setOpenUpdate, user }) => {
   };
 
   return (
-    <div className="update">
-      <div className="wrapper">
+    <div className="UPDATE__">
+      <div className="UPDATE__wrapper">
         <h1>Update Your Profile</h1>
         <form>
-          <div className="files">
+          <div className="UPDATE__files">
             <label htmlFor="cover">
               <span>Cover Picture</span>
-              <div className="imgContainer">
+              <div className="UPDATE__imgContainer">
                 <img src={cover ? URL.createObjectURL(cover) : "/upload/" + user.coverPic} alt="" />
-                <CloudUploadIcon className="icon" />
+                <CloudUploadIcon className="UPDATE__icon" />
               </div>
             </label>
             <input type="file" id="cover" style={{ display: "none" }} onChange={(e) => setCover(e.target.files[0])} />
             <label htmlFor="profile">
               <span>Profile Picture</span>
-              <div className="imgContainer">
+              <div className="UPDATE__imgContainer">
                 <img src={profile ? URL.createObjectURL(profile) : "/upload/" + user.profilePic} alt="" />
-                <CloudUploadIcon className="icon" />
+                <CloudUploadIcon className="UPDATE__icon" />
               </div>
             </label>
             <input type="file" id="profile" style={{ display: "none" }} onChange={(e) => setProfile(e.target.files[0])} />
@@ -96,7 +96,7 @@ const Update = ({ setOpenUpdate, user }) => {
           <input type="text" name="website" value={texts.website} onChange={handleChange} />
           <button onClick={handleClick}>Update</button>
         </form>
-        <button className="close" onClick={() => setOpenUpdate(false)}>
+        <button className="UPDATE__close" onClick={() => setOpenUpdate(false)}>
           close
         </button>
       </div>
