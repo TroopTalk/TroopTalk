@@ -1,77 +1,69 @@
-// import { bcrypt, crypto, dotenv, jwt } from "../packages.js";
 import bcrypt from "bcryptjs";
-// import crypto from "crypto";
-import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
-import { db } from "../connect.js";
+import User from "../models/users.js";
 
-dotenv.config();
-
-export const register = (req, res) => {
-  const q = "SELECT * FROM users WHERE username = ?";
-
-  db.query(q, [req.body.username], (err, data) => {
-    if (err) return res.status(500).json(err);
-    if (data.length) return res.status(409).json("User already exists!");
-
-    const salt = bcrypt.genSaltSync(10);
-    const hashedPassword = bcrypt.hashSync(req.body.password, salt);
-
-    const q = "INSERT INTO users (`username`,`email`,`password`,`name`) VALUE (?)";
-
-    const values = [req.body.username, req.body.email, hashedPassword, req.body.name];
-
-    db.query(q, [values], (err) => {
-      if (err) return res.status(500).json(err);
-      return res.status(200).json("User has been created.");
-    });
-  });
-};
-
-export const login = (req, res) => {
-  const q = "SELECT * FROM users WHERE username = ?";
-
-  console.log(`Login request received for user ${req.body.username}`);
-
-  db.query(q, [req.body.username], async (err, data) => {
-    console.log(`Querying data base for ${req.body.username}`); 
-
+const authController = {
+  registerUser: async (req, res) => {
     try {
-      if (err) {
-        console.log("Error during DB query:", err); // Add this log statement
-        return res.status(500).json(err);
+      const { username, email, password } = req.body;
+
+      // Check if the username or email already exists
+      const existingUser = await User.findOne({
+        $or: [{ username }, { email }],
+      });
+
+      if (existingUser) {
+        return res.status(400).json({ message: "Username or email already exists" });
       }
-      if (data.length === 0) return res.status(404).json("User not found!");
 
-      const checkPassword = await bcrypt.compare(req.body.password, data[0].password);
-      if (!checkPassword) return res.status(400).json("Wrong password or username!");
+      // Hash the password
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
 
-      const token = jwt.sign({ id: data[0].id }, process.env.JWT_SECRET); // Use the JWT_SECRET to sign the JWT
+      // Create a new user
+      const newUser = new User({
+        username,
+        email,
+        password: hashedPassword,
+      });
 
-      const { password, ...others } = data[0];
+      // Save the user to the database
+      await newUser.save();
 
-      res
-        .cookie(process.env.AUTH_TOKEN, token, {
-          httpOnly: true,
-          secure: true,
-          sameSite: "strict",
-        })
-        .status(200)
-        .json(others);
+      res.status(201).json({ message: "User registered successfully" });
     } catch (error) {
-      console.error("Error during login:", error);
-      res.status(500).json({ message: "Internal server error" });
+      console.error("Failed to register user:", error);
+      res.status(500).json({ message: "Failed to register user" });
     }
-  });
-  console.log(`Login request for user ${req.body.username} completed.`)
+  },
+
+  loginUser: async (req, res) => {
+    try {
+      const { email, password } = req.body;
+
+      // Find the user by email
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      // Check if the provided password is correct
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+
+      if (!isPasswordValid) {
+        return res.status(401).json({ message: "Invalid password" });
+      }
+
+      // Authentication successful
+      // Generate a token or create a session and send it back as a response
+      // ...
+
+      res.status(200).json({ message: "Login successful" });
+    } catch (error) {
+      console.error("Failed to login user:", error);
+      res.status(500).json({ message: "Failed to login user" });
+    }
+  },
 };
 
-export const logout = (req, res) => {
-  res
-    .clearCookie(process.env.AUTH_TOKEN, {
-      secure: true,
-      sameSite: true,
-    })
-    .status(200)
-    .json("User has been logged out.");
-};
+export default authController;
