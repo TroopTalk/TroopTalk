@@ -5,7 +5,7 @@ import "./login.scss";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
-    username: "",
+    email: "", // Updated field name to "email"
     password: "",
   });
 
@@ -16,18 +16,33 @@ const Login = () => {
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
   const { login } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     console.log("handleLogin called");
     try {
-      await login(inputs);
-      console.log("Login successful");
-      console.log("Navigating to /"); // Add this line
-      navigate("/");
+      const response = await fetch("http://localhost:3333/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputs),
+      });
+
+      if (response.ok) {
+        console.log("Login successful");
+        console.log("Navigating to /");
+        login(inputs); // Call the login function from AuthContext
+        navigate("/");
+      } else {
+        const errorData = await response.json();
+        setErr(errorData.message);
+      }
     } catch (err) {
-      setErr(err.response.data);
+      console.error("Failed to login:", err);
+      setErr("Failed to login");
     }
   };
 
@@ -45,9 +60,9 @@ const Login = () => {
         <div className="LOGIN__right">
           <h1>Login</h1>
           <form onSubmit={handleLogin}>
-            <input type="text" placeholder="Username" name="username" onChange={handleChange} />
+            <input type="text" placeholder="Email" name="email" onChange={handleChange} /> {/* Updated field type and name */}
             <input type="password" placeholder="Password" name="password" onChange={handleChange} />
-            {err && err}
+            {err && <p>{err}</p>}
             <button type="submit">Login</button>
           </form>
         </div>

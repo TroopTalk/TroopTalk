@@ -1,17 +1,26 @@
-import { createBrowserRouter, RouterProvider, Outlet, Navigate } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet, Navigate, useNavigate } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary"; // Import the ErrorBoundary component
 import { Friends, Home, Login, Profile, Register, Messages } from "./pages/export.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LeftBar, Navbar, RightBar } from "./components/export.js";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./style.scss";
+
+// ErrorFallback component to display an error message or fallback UI
+const ErrorFallback = ({ error }) => {
+  return (
+    <div>
+      <h2>Something went wrong</h2>
+      <p>{error.message}</p>
+    </div>
+  );
+};
 
 function App() {
   const { currentUser } = useContext(AuthContext);
-
   const { darkMode } = useContext(DarkModeContext);
-
   const queryClient = new QueryClient();
 
   const Layout = () => {
@@ -32,12 +41,21 @@ function App() {
   };
 
   const ProtectedRoute = ({ children }) => {
-    return currentUser ? children : <Navigate to="/login" />;
+    const { currentUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      if (!currentUser) {
+        navigate("/login");
+      }
+    }, [currentUser, navigate]);
+
+    return currentUser ? children : null;
   };
 
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "",
       element: (
         <ProtectedRoute>
           <Layout />
@@ -45,30 +63,30 @@ function App() {
       ),
       children: [
         {
-          path: "/",
-          element: <Home />,
+          path: "", // Render Home component at the root path ("/")
+          element: <ErrorBoundary FallbackComponent={ErrorFallback}><Home /></ErrorBoundary>,
         },
         {
-          path: "/messages/:id",
-          element: <Messages />,
+          path: "messages/:id",
+          element: <ErrorBoundary FallbackComponent={ErrorFallback}><Messages /></ErrorBoundary>, // Render Messages component for "/messages/:id" path
         },
         {
-          path: "/profile/:id",
-          element: <Profile />,
+          path: "profile/:id",
+          element: <ErrorBoundary FallbackComponent={ErrorFallback}><Profile /></ErrorBoundary>, // Render Profile component for "/profile/:id" path
         },
         {
-          path: "/friends",
-          element: <Friends />,
+          path: "friends",
+          element: <ErrorBoundary FallbackComponent={ErrorFallback}><Friends /></ErrorBoundary>, // Render Friends component for "/friends" path
         },
       ],
     },
     {
       path: "/login",
-      element: <Login />,
+      element: <ErrorBoundary FallbackComponent={ErrorFallback}><Login /></ErrorBoundary>, // Render Login component for "/login" path
     },
     {
       path: "/register",
-      element: <Register />,
+      element: <ErrorBoundary FallbackComponent={ErrorFallback}><Register /></ErrorBoundary>, // Render Register component for "/register" path
     },
   ]);
 

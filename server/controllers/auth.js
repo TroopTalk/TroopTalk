@@ -41,16 +41,20 @@ const authController = {
       const { email, password } = req.body;
 
       // Find the user by email
+      console.log("Finding user by email:", email);
       const user = await User.findOne({ email });
 
       if (!user) {
+        console.log("User not found");
         return res.status(404).json({ message: "User not found" });
       }
 
       // Check if the provided password is correct
+      console.log("Comparing passwords");
       const isPasswordValid = await bcrypt.compare(password, user.password);
 
       if (!isPasswordValid) {
+        console.log("Invalid password");
         return res.status(401).json({ message: "Invalid password" });
       }
 
@@ -58,6 +62,7 @@ const authController = {
       // Generate a token or create a session and send it back as a response
       // ...
 
+      console.log("Login successful");
       res.status(200).json({ message: "Login successful" });
     } catch (error) {
       console.error("Failed to login user:", error);

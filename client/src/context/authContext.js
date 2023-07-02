@@ -12,7 +12,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const login = async (inputs) => {
-    const API = process.env.REACT_APP_AUTH_LOGIN_API;
+    const API = "http://localhost:3333/api/auth/login";
     try {
       const res = await axios.post(API, inputs, {
         withCredentials: true,
@@ -36,7 +36,7 @@ export const AuthContextProvider = ({ children }) => {
   const logout = async () => {
     try {
       await axios.post(
-        "http://localhost:3301/api/auth/logout",
+        "http://localhost:3333/api/auth/logout",
         {},
         {
           withCredentials: true,
