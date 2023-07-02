@@ -4,6 +4,10 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
+// routes
+import loginRouter from "./routes/user.js";
+import authRouter from "./routes/auth.js";
+
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -11,9 +15,13 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: process.env.CORS_ORG,
+    origin: "http://localhost:3001",
   }),
 );
+
+// Mount the login router
+app.use("/api/login", loginRouter);
+app.use("/api/auth", authRouter);
 
 const startServer = async () => {
   try {
