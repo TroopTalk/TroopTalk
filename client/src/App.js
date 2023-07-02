@@ -1,11 +1,12 @@
-import { createBrowserRouter, RouterProvider, Outlet, Navigate, useNavigate } from "react-router-dom";
-import { ErrorBoundary } from "react-error-boundary"; // Import the ErrorBoundary component
+import { createBrowserRouter, RouterProvider, Outlet, useNavigate } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
 import { Friends, Home, Login, Profile, Register, Messages } from "./pages/export.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { LeftBar, Navbar, RightBar } from "./components/export.js";
+import { LeftBar, RightBar } from "./components/export.js";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import Navbar from "./components/navbar/Navbar";
 import "./style.scss";
 
 // ErrorFallback component to display an error message or fallback UI
@@ -25,18 +26,20 @@ function App() {
 
   const Layout = () => {
     return (
-      <QueryClientProvider client={queryClient}>
-        <div className={`theme-${darkMode ? "dark" : "light"}`}>
-          <Navbar />
-          <div style={{ display: "flex" }}>
-            <LeftBar />
-            <div style={{ flex: 6 }}>
-              <Outlet />
+      <React.Fragment>
+        <Navbar />
+        <QueryClientProvider client={queryClient}>
+          <div className={`theme-${darkMode ? "light" : "dark"}`}>
+            <div style={{ display: "flex" }}>
+              <LeftBar />
+              <div style={{ flex: 6 }}>
+                <Outlet />
+              </div>
+              <RightBar />
             </div>
-            <RightBar />
           </div>
-        </div>
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </React.Fragment>
     );
   };
 
@@ -64,29 +67,53 @@ function App() {
       children: [
         {
           path: "", // Render Home component at the root path ("/")
-          element: <ErrorBoundary FallbackComponent={ErrorFallback}><Home /></ErrorBoundary>,
+          element: (
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <Home />
+            </ErrorBoundary>
+          ),
         },
         {
           path: "messages/:id",
-          element: <ErrorBoundary FallbackComponent={ErrorFallback}><Messages /></ErrorBoundary>, // Render Messages component for "/messages/:id" path
+          element: (
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <Messages />
+            </ErrorBoundary>
+          ), // Render Messages component for "/messages/:id" path
         },
         {
           path: "profile/:id",
-          element: <ErrorBoundary FallbackComponent={ErrorFallback}><Profile /></ErrorBoundary>, // Render Profile component for "/profile/:id" path
+          element: (
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <Profile />
+            </ErrorBoundary>
+          ), // Render Profile component for "/profile/:id" path
         },
         {
           path: "friends",
-          element: <ErrorBoundary FallbackComponent={ErrorFallback}><Friends /></ErrorBoundary>, // Render Friends component for "/friends" path
+          element: (
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <Friends />
+            </ErrorBoundary>
+          ), // Render Friends component for "/friends" path
         },
       ],
     },
     {
       path: "/login",
-      element: <ErrorBoundary FallbackComponent={ErrorFallback}><Login /></ErrorBoundary>, // Render Login component for "/login" path
+      element: (
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Login />
+        </ErrorBoundary>
+      ), // Render Login component for "/login" path
     },
     {
       path: "/register",
-      element: <ErrorBoundary FallbackComponent={ErrorFallback}><Register /></ErrorBoundary>, // Render Register component for "/register" path
+      element: (
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Register />
+        </ErrorBoundary>
+      ), // Render Register component for "/register" path
     },
   ]);
 

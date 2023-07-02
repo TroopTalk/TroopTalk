@@ -1,4 +1,4 @@
-import { DarkModeOutlinedIcon, WbSunnyOutlinedIcon, GridViewOutlinedIcon, NotificationsOutlinedIcon, EmailOutlinedIcon, SearchOutlinedIcon, Logout } from "./img.js";
+import { DarkModeOutlinedIcon, WbSunnyOutlinedIcon, GridViewOutlinedIcon, NotificationsOutlinedIcon, EmailOutlinedIcon, SearchOutlinedIcon, Logout, HomeOutlinedIcon } from "./img.js";
 import { AuthContext, DarkModeContext } from "../../context/export.js";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AccountCircle } from "@mui/icons-material";
@@ -32,7 +32,7 @@ const Navbar = () => {
         <Link to="/" style={{ textDecoration: "none" }}>
           <span>TroopTalk</span>
         </Link>
-        {/* <HomeOutlinedIcon /> */}
+        <HomeOutlinedIcon />
         {darkMode ? <WbSunnyOutlinedIcon onClick={toggle} /> : <DarkModeOutlinedIcon onClick={toggle} />}
         <GridViewOutlinedIcon />
 

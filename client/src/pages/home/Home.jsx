@@ -5,8 +5,8 @@ const Home = () => {
   return (
     <div className="HOME__">
       {/* <Stories /> */}
-      <Share />
-      <Posts />
+      {/* <Share /> */}
+      {/* <Posts /> */}
     </div>
   );
 };

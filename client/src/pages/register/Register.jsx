@@ -7,10 +7,12 @@ const Register = () => {
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({
+    firstName: "",
+    lastName: "",
+    branch: "",
     username: "",
     email: "",
     password: "",
-    name: "",
   });
   const [err, setErr] = useState(null);
 
@@ -44,10 +46,13 @@ const Register = () => {
         <div className="REGISTER__right">
           <h1>Register</h1>
           <form>
+            <input type="text" placeholder="First Name" name="firstName" onChange={handleChange} />
+            <input type="text" placeholder="Last Name" name="lastName" onChange={handleChange} />
+            <input type="text" placeholder="Branch of Service" name="branch" onChange={handleChange} />
+            <input type="text" placeholder="Last Name" name="lastName" onChange={handleChange} />
             <input type="text" placeholder="Username" name="username" onChange={handleChange} />
             <input type="email" placeholder="Email" name="email" onChange={handleChange} />
             <input type="password" placeholder="Password" name="password" onChange={handleChange} />
-            <input type="text" placeholder="Name" name="name" onChange={handleChange} />
             {err && <div className="REGISTER__error">{err}</div>}
             <button onClick={handleClick}>Register</button>
           </form>

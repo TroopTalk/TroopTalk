@@ -6,7 +6,9 @@ export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, _setCurrentUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
 
-  const setCurrentUser = (user) => {
+  const setCurrentUser = (response) => {
+    const { name } = response;
+    const user = { name };
     localStorage.setItem("user", JSON.stringify(user));
     _setCurrentUser(user);
   };
@@ -18,10 +20,11 @@ export const AuthContextProvider = ({ children }) => {
         withCredentials: true,
       });
 
-      console.log("Server response:", res); // Add this line to log the server response
+      console.log("Server response:", res); // Log the server response
 
       if (res.status === 200) {
         setCurrentUser(res.data);
+        console.log("Server response data:", res.data);
         localStorage.setItem("user", JSON.stringify(res.data));
         console.log("Logged in successfully");
       } else {
