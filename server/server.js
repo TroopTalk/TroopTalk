@@ -4,8 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
-// routes
-import loginRouter from "./routes/user.js";
+// Import your authentication router
 import authRouter from "./routes/auth.js";
 
 dotenv.config();
@@ -16,18 +15,18 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: "http://localhost:3001",
+    credentials: true, // Set credentials to true
   }),
 );
 
-// Mount the login router
-app.use("/api/login", loginRouter);
+// Mount the authentication router
 app.use("/api/auth", authRouter);
 
 const startServer = async () => {
   try {
     await connectDB();
     console.log("Connected to MongoDB successfully!");
-    app.listen(process.env.SERVER_PORT, () => {
+    app.listen(3333, () => {
       console.log("Server is UP!");
     });
   } catch (error) {

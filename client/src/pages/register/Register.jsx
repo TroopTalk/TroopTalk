@@ -20,7 +20,7 @@ const Register = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const API = process.env.REACT_APP_REGISTER_API;
+    const API = "http://localhost:3333/api/auth/register";
     try {
       await axios.post(API, inputs);
       navigate("/login");
