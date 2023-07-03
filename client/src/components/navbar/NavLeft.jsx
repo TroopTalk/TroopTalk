@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { nav } from "./info";
 
 const NavLeft = () => {
-  const { toggle, darkMode } = useContext(DarkModeContext);
+  const { darkMode } = useContext(DarkModeContext);
   const darkLightText = { color: darkMode ? "#fff" : "#000" };
 
   return (
