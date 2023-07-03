@@ -1,6 +1,6 @@
 import { AuthContext, DarkModeContext } from "../../context/export.js";
+import { NavLayout, NavLeft, NavbarRightLayout } from "./import.js";
 import { Icon, IconLink } from "../customHTML/export.js";
-import { NavLayout, NavLeft } from "./import.js";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { nav } from "./info.js";
@@ -10,7 +10,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { toggle, darkMode } = useContext(DarkModeContext);
   const darkLight = { background: darkMode ? "#000" : "#fff" };
-  const darkLightText = { color: darkMode ? "#fff" : "#000" };
 
   const { currentUser, logout } = useContext(AuthContext);
 
@@ -35,17 +34,13 @@ const Navbar = () => {
   const NavRight = () => (
     <div className={nav.right}>
       <div className="item">{darkMode ? <Icon icon="moon" onClick={toggle} /> : <Icon icon="sun" onClick={toggle} />}</div>
-      <div className="item">
-        <IconLink to={`/messages/${currentUser?.id}`} icon="email" />
-      </div>
-      <div className="item">
-        <IconLink to={`/notifications/${currentUser?.id}`} icon="notif" />
-      </div>
+      <NavbarRightLayout to={`/messages/${currentUser?.id}`} icon="email" />
+      <NavbarRightLayout to={`/notifications/${currentUser?.id}`} icon="notif" />
       <div className="item">
         <UserIcon />
       </div>
-      <div className="item">
-        <IconLink className={nav.logout} onClick={handleLogout} icon="logout" />
+      <div className="item" onClick={handleLogout}>
+        <IconLink className={nav.logout} icon="logout" />
       </div>
     </div>
   );
