@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LeftBar, RightBar } from "./components/export.js";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext, AuthContextProvider } from "./context/authContext";
-import React, { useContext, useEffect } from "react";
+import React, { Suspense, useContext, useEffect } from "react";
 import Navbar from "./components/navbar/Navbar.jsx";
 import "./style.scss";
 
@@ -33,7 +33,7 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-function App() {
+const App = () => {
   const { currentUser } = useContext(AuthContext);
   const { darkMode } = useContext(DarkModeContext);
   const queryClient = new QueryClient();
@@ -71,29 +71,29 @@ function App() {
   };
 
   return (
-    <React.Fragment>
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <ErrorBoundary>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <ErrorBoundary>
+                <Suspense fallback={<div>Loading...</div>}>
                   <Layout />
-                </ErrorBoundary>
-              </ProtectedRoute>
-            }>
-            <Route path="/" element={<Home />} />
-            <Route path="messages/:id" element={<Messages />} />
-            <Route path="profile/:id" element={<Profile />} />
-            <Route path="friends" element={<Friends />} />
-          </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </Router>
-    </React.Fragment>
+                </Suspense>
+              </ErrorBoundary>
+            </ProtectedRoute>
+          }>
+          <Route path="/" element={<Home />} />
+          <Route path="messages/:id" element={<Messages />} />
+          <Route path="profile/:id" element={<Profile />} />
+          <Route path="friends" element={<Friends />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
