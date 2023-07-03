@@ -1,12 +1,14 @@
-import { useState } from "react";
-import { makeRequest } from "../../axios";
-import "./update.scss";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { FileUpload, InputField } from "./import";
+import { makeRequest } from "../../axios";
+import { inputFields } from "./data";
+import React, { useState } from "react";
+import "./update.scss";
 
 const Update = ({ setOpenUpdate, user }) => {
   const [cover, setCover] = useState(null);
   const [profile, setProfile] = useState(null);
+
   const [texts, setTexts] = useState({
     email: user.email,
     password: user.password,
@@ -67,33 +69,12 @@ const Update = ({ setOpenUpdate, user }) => {
         <h1>Update Your Profile</h1>
         <form>
           <div className="UPDATE__files">
-            <label htmlFor="cover">
-              <span>Cover Picture</span>
-              <div className="UPDATE__imgContainer">
-                <img src={cover ? URL.createObjectURL(cover) : "/upload/" + user.coverPic} alt="" />
-                <CloudUploadIcon className="UPDATE__icon" />
-              </div>
-            </label>
-            <input type="file" id="cover" style={{ display: "none" }} onChange={(e) => setCover(e.target.files[0])} />
-            <label htmlFor="profile">
-              <span>Profile Picture</span>
-              <div className="UPDATE__imgContainer">
-                <img src={profile ? URL.createObjectURL(profile) : "/upload/" + user.profilePic} alt="" />
-                <CloudUploadIcon className="UPDATE__icon" />
-              </div>
-            </label>
-            <input type="file" id="profile" style={{ display: "none" }} onChange={(e) => setProfile(e.target.files[0])} />
+            <FileUpload type="text" label="cover" file={cover} setFile={setCover} user={user} />
+            <FileUpload type="text" label="profile" file={profile} setFile={setProfile} user={user} />
           </div>
-          <label>Email</label>
-          <input type="text" value={texts.email} name="email" onChange={handleChange} />
-          <label>Password</label>
-          <input type="text" value={texts.password} name="password" onChange={handleChange} />
-          <label>Name</label>
-          <input type="text" value={texts.name} name="name" onChange={handleChange} />
-          <label>Country / City</label>
-          <input type="text" name="city" value={texts.city} onChange={handleChange} />
-          <label>Website</label>
-          <input type="text" name="website" value={texts.website} onChange={handleChange} />
+          {inputFields.map((field) => (
+            <InputField key={field.name} label={field.label} value={field.value} name={field.name} handleChange={handleChange} />
+          ))}
           <button onClick={handleClick}>Update</button>
         </form>
         <button className="UPDATE__close" onClick={() => setOpenUpdate(false)}>

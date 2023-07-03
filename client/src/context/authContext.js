@@ -4,7 +4,12 @@ import axios from "axios";
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
+  const [currentUser, setCurrentUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
+  console.log("currentUser:", currentUser);
 
   const login = async (inputs) => {
     const API = "http://localhost:3333/api/auth/login";
@@ -12,6 +17,8 @@ export const AuthContextProvider = ({ children }) => {
       const res = await axios.post(API, inputs, {
         withCredentials: true,
       });
+
+      console.log("Login response:", res.data); // Log the response from the server
 
       if (res.status === 200) {
         setCurrentUser(res.data);
@@ -43,5 +50,16 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.removeItem("token"); // Remove the token from local storage
   };
 
-  return <AuthContext.Provider value={{ currentUser, login, logout }}>{children}</AuthContext.Provider>;
+  const updateUser = (userData) => {
+    if (userData && typeof userData === "object" && userData.hasOwnProperty("name")) {
+      setCurrentUser(userData);
+      localStorage.setItem("user", JSON.stringify(userData));
+    } else {
+      console.error("Invalid currentUser:", userData);
+      setCurrentUser(null);
+      localStorage.removeItem("user");
+    }
+  };
+
+  return <AuthContext.Provider value={{ currentUser, login, logout, updateUser }}>{children}</AuthContext.Provider>;
 };

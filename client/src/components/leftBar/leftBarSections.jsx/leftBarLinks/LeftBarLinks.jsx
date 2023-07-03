@@ -1,18 +1,17 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import { menuItems } from "../leftBarEnd/menuItems";
 
-const LeftBarLinks = ({ menuItems }) => {
+const LeftBarLinks = () => {
   return (
-    <React.Fragment>
-      {menuItems.map((item) => (
-        <Link key={item.id} to={item.path}>
-          <div className="LEFT_BAR__item" key={item.label}>
-            <img src={item.icon} alt={`${item.label} icon`} />
-            <span>{item.label}</span>
-          </div>
+    <div>
+      {menuItems.map((item, index) => (
+        <Link key={index} to={item.path}>
+          {item.icon}
+          <span>{item.title}</span>
         </Link>
       ))}
-    </React.Fragment>
+    </div>
   );
 };
 export default LeftBarLinks;

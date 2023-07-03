@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import "./register.scss";
+import InputField from "../../components/customHTML/InputField";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -49,12 +50,12 @@ const Register = () => {
         <div className="REGISTER__right">
           <h1>Register</h1>
           <form>
-            <input type="text" placeholder="First Name" name="firstName" value={inputs.firstName} onChange={handleChange} />
-            <input type="text" placeholder="Last Name" name="lastName" value={inputs.lastName} onChange={handleChange} />
-            <input type="text" placeholder="Service Branch" name="serviceBranch" value={inputs.serviceBranch} onChange={handleChange} />
-            <input type="text" placeholder="Username" name="username" value={inputs.username} onChange={handleChange} />
-            <input type="email" placeholder="Email" name="email" value={inputs.email} onChange={handleChange} />
-            <input type="password" placeholder="Password" name="password" value={inputs.password} onChange={handleChange} />
+            <InputField placeholder="First Name" value={inputs.firstName} name="firstName" type="text" handleChange={handleChange} />
+            <InputField placeholder="Last Name" value={inputs.lastName} name="lastName" type="text" handleChange={handleChange} />
+            <InputField placeholder="Service Branch" value={inputs.serviceBranch} name="serviceBranch" type="text" handleChange={handleChange} />
+            <InputField placeholder="Username" value={inputs.username} name="username" type="text" handleChange={handleChange} />
+            <InputField placeholder="Email" value={inputs.email} name="email" type="email" handleChange={handleChange} />
+            <InputField placeholder="Password" value={inputs.password} name="password" type="password" handleChange={handleChange} />
             {err && <div className="REGISTER__error">{err}</div>}
             <button onClick={handleClick}>Register</button>
           </form>
