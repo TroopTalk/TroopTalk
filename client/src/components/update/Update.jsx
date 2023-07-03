@@ -1,12 +1,13 @@
-import { useState } from "react";
-import { makeRequest } from "../../axios";
-import "./update.scss";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { makeRequest } from "../../axios";
+import { useState } from "react";
+import "./update.scss";
 
 const Update = ({ setOpenUpdate, user }) => {
   const [cover, setCover] = useState(null);
   const [profile, setProfile] = useState(null);
+
   const [texts, setTexts] = useState({
     email: user.email,
     password: user.password,

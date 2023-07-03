@@ -43,7 +43,7 @@ function App() {
       <React.Fragment>
         <Navbar />
         <QueryClientProvider client={queryClient}>
-          <div className={`theme-${darkMode ? "light" : "dark"}`}>
+          <div className={`theme-${darkMode ? "dark" : "light"}`}>
             <div style={{ display: "flex" }}>
               <LeftBar />
               <div style={{ flex: 6 }}>
@@ -71,7 +71,7 @@ function App() {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Router>
         <Routes>
           <Route
@@ -84,15 +84,15 @@ function App() {
               </ProtectedRoute>
             }>
             <Route path="/" component={Home} />
-            <Route path="messages/:id" element={<Messages />} />
-            <Route path="profile/:id" element={<Profile />} />
-            <Route path="friends" element={<Friends />} />
+            <Route path="messages/:id" component={Messages} />
+            <Route path="profile/:id" component={Profile} />
+            <Route path="friends" component={Friends} />
           </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
         </Routes>
       </Router>
-    </div>
+    </React.Fragment>
   );
 }
 
