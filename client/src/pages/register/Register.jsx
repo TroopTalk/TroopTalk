@@ -9,25 +9,28 @@ const Register = () => {
   const [inputs, setInputs] = useState({
     firstName: "",
     lastName: "",
-    branch: "",
+    serviceBranch: "",
     username: "",
     email: "",
     password: "",
   });
+
   const [err, setErr] = useState(null);
 
   const handleChange = (e) => {
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setInputs((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
+    console.log(inputs); // Check the inputs object
     const API = "http://localhost:3333/api/auth/register";
     try {
       await axios.post(API, inputs);
       navigate("/login");
     } catch (err) {
-      const errorMessage = err.response.data.sqlMessage; // or whatever field contains the error message
+      const errorMessage = err.response.data.message;
       setErr(errorMessage);
     }
   };
@@ -46,13 +49,12 @@ const Register = () => {
         <div className="REGISTER__right">
           <h1>Register</h1>
           <form>
-            <input type="text" placeholder="First Name" name="firstName" onChange={handleChange} />
-            <input type="text" placeholder="Last Name" name="lastName" onChange={handleChange} />
-            <input type="text" placeholder="Branch of Service" name="branch" onChange={handleChange} />
-            <input type="text" placeholder="Last Name" name="lastName" onChange={handleChange} />
-            <input type="text" placeholder="Username" name="username" onChange={handleChange} />
-            <input type="email" placeholder="Email" name="email" onChange={handleChange} />
-            <input type="password" placeholder="Password" name="password" onChange={handleChange} />
+            <input type="text" placeholder="First Name" name="firstName" value={inputs.firstName} onChange={handleChange} />
+            <input type="text" placeholder="Last Name" name="lastName" value={inputs.lastName} onChange={handleChange} />
+            <input type="text" placeholder="Service Branch" name="serviceBranch" value={inputs.serviceBranch} onChange={handleChange} />
+            <input type="text" placeholder="Username" name="username" value={inputs.username} onChange={handleChange} />
+            <input type="email" placeholder="Email" name="email" value={inputs.email} onChange={handleChange} />
+            <input type="password" placeholder="Password" name="password" value={inputs.password} onChange={handleChange} />
             {err && <div className="REGISTER__error">{err}</div>}
             <button onClick={handleClick}>Register</button>
           </form>

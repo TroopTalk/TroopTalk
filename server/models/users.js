@@ -1,30 +1,26 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: false,
-    unique: false,
   },
   lastName: {
     type: String,
     required: true,
-    unique: false,
   },
-  branch: {
+  serviceBranch: {
     type: String,
     required: true,
-    unique: false,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
   },
   username: {
     type: String,
     required: true,
-    unique: true,
+  },
+  email: {
+    type: String,
+    required: true,
   },
   password: {
     type: String,
@@ -35,6 +31,11 @@ const userSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+// Compare provided password with the hashed password
+userSchema.methods.comparePassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
 
 const User = mongoose.model("User", userSchema);
 

@@ -12,10 +12,11 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
+// middleware
 app.use(
   cors({
-    origin: "http://localhost:3001",
-    credentials: true, // Set credentials to true
+    origin: ["http://localhost:3000", "http://localhost:3001"],
+    credentials: true,
   }),
 );
 

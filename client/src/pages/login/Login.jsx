@@ -5,7 +5,7 @@ import "./login.scss";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
-    email: "", // Updated field name to "email"
+    email: "",
     password: "",
   });
 
@@ -35,7 +35,9 @@ const Login = () => {
         console.log("Login successful");
         console.log("Navigating to /");
         login(inputs); // Call the login function from AuthContext
-        navigate("/");
+        setTimeout(() => {
+          navigate("/");
+        }, 100);
       } else {
         const errorData = await response.json();
         setErr(errorData.message);
@@ -47,24 +49,26 @@ const Login = () => {
   };
 
   return (
-    <div className="LOGIN__">
-      <div className="LOGIN__card">
-        <div className="LOGIN__left">
-          <h1>Troop Talk</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum, alias totam numquam ipsa exercitationem dignissimos, error nam, consequatur.</p>
-          <span>Don't you have an account?</span>
-          <Link to="/register">
-            <button>Register</button>
-          </Link>
-        </div>
-        <div className="LOGIN__right">
-          <h1>Login</h1>
-          <form onSubmit={handleLogin}>
-            <input type="text" placeholder="Email" name="email" onChange={handleChange} /> {/* Updated field type and name */}
-            <input type="password" placeholder="Password" name="password" onChange={handleChange} />
-            {err && <p>{err}</p>}
-            <button type="submit">Login</button>
-          </form>
+    <div>
+      <div className="LOGIN__">
+        <div className="LOGIN__card">
+          <div className="LOGIN__left">
+            <h1>Troop Talk</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum, alias totam numquam ipsa exercitationem dignissimos, error nam, consequatur.</p>
+            <span>Don't you have an account?</span>
+            <Link to="/register">
+              <button>Register</button>
+            </Link>
+          </div>
+          <div className="LOGIN__right">
+            <h1>Login</h1>
+            <form onSubmit={handleLogin}>
+              <input type="text" placeholder="Email" name="email" onChange={handleChange} />
+              <input type="password" placeholder="Password" name="password" onChange={handleChange} />
+              {err && <p>{err}</p>}
+              <button type="submit">Login</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

@@ -1,10 +1,11 @@
-import bcrypt from "bcryptjs";
 import User from "../models/users.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const authController = {
   registerUser: async (req, res) => {
     try {
-      const { username, email, password } = req.body;
+      const { firstName, lastName, serviceBranch, username, email, password } = req.body;
 
       // Check if the username or email already exists
       const existingUser = await User.findOne({
@@ -16,11 +17,13 @@ const authController = {
       }
 
       // Hash the password
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(password, salt);
+      const hashedPassword = await bcrypt.hash(password, 10);
 
       // Create a new user
       const newUser = new User({
+        firstName,
+        lastName,
+        serviceBranch,
         username,
         email,
         password: hashedPassword,
@@ -32,7 +35,7 @@ const authController = {
       res.status(201).json({ message: "User registered successfully" });
     } catch (error) {
       console.error("Failed to register user:", error);
-      res.status(500).json({ message: "Failed to register user" });
+      res.status(500).json({ message: "Failed to register user", error: error.message });
     }
   },
 
@@ -41,32 +44,39 @@ const authController = {
       const { email, password } = req.body;
 
       // Find the user by email
-      console.log("Finding user by email:", email);
       const user = await User.findOne({ email });
 
       if (!user) {
-        console.log("User not found");
         return res.status(404).json({ message: "User not found" });
       }
 
       // Check if the provided password is correct
-      console.log("Comparing passwords");
       const isPasswordValid = await bcrypt.compare(password, user.password);
 
       if (!isPasswordValid) {
-        console.log("Invalid password");
         return res.status(401).json({ message: "Invalid password" });
       }
 
-      // Authentication successful
-      // Generate a token or create a session and send it back as a response
-      // ...
+      // Generate a JWT token
+      const token = jwt.sign({ userId: user._id }, "your_secret_key");
 
-      console.log("Login successful");
-      res.status(200).json({ message: "Login successful" });
+      res.status(200).json({ message: "Login successful", token });
     } catch (error) {
       console.error("Failed to login user:", error);
       res.status(500).json({ message: "Failed to login user" });
+    }
+  },
+
+  logoutUser: async (req, res) => {
+    try {
+      // Perform any necessary logout operations
+      // For example, if using sessions, you can clear the session data:
+      req.session = null;
+
+      res.status(200).json({ message: "Logout successful" });
+    } catch (error) {
+      console.error("Failed to logout user:", error);
+      res.status(500).json({ message: "Failed to logout user" });
     }
   },
 };
