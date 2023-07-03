@@ -10,11 +10,9 @@ const NavLeft = () => {
 
   return (
     <div className={nav.left}>
-      <span style={darkLightText}>TroopTalk</span>
       <Link to="/" style={{ textDecoration: "none" }}>
-        <Icon icon="home" />
+        <span style={darkLightText}>TroopTalk</span>
       </Link>
-      {darkMode ? <Icon icon="moon" onClick={toggle} /> : <Icon icon="sun" onClick={toggle} />}
       <Icon icon="grid" />
       <div className={nav.search}>
         <Icon icon="search" />

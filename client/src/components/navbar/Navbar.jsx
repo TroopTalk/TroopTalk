@@ -1,15 +1,16 @@
 import { AuthContext, DarkModeContext } from "../../context/export.js";
-import { Link, useNavigate } from "react-router-dom";
-import Icon from "../customHTML/Icon.jsx";
+import { Icon, IconLink } from "../customHTML/export.js";
 import { NavLayout, NavLeft } from "./import.js";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { nav } from "./info.js";
 import "./navbar.scss";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { darkMode } = useContext(DarkModeContext);
+  const { toggle, darkMode } = useContext(DarkModeContext);
   const darkLight = { background: darkMode ? "#000" : "#fff" };
+  const darkLightText = { color: darkMode ? "#fff" : "#000" };
 
   const { currentUser, logout } = useContext(AuthContext);
 
@@ -28,19 +29,24 @@ const Navbar = () => {
   }
 
   const UserImg = () => <img src={`/upload/${currentUser.profilePic}`} alt={`${currentUser.name}'s profile pic`} />;
-  const DefaultImg = () => <Icon icon="acct">{currentUser?.name ? currentUser.name[0] : ""}</Icon>;
-  const UserIcon = () => <div className={nav.user}>{currentUser?.profilePic ? <UserImg /> : <DefaultImg />}</div>;
+  const DefaultImg = () => <IconLink icon="acct" to={`/profile/${currentUser.id}`} />;
+  const UserIcon = () => <div className={`${nav.user} item`}>{currentUser?.profilePic ? <UserImg /> : <DefaultImg />}</div>;
 
   const NavRight = () => (
     <div className={nav.right}>
-      <Link to={`/messages/${currentUser?.id}`}>
-        <Icon icon="email" />
-      </Link>
-      <Icon icon="notif" />
-      <UserIcon />
-      <Link className={nav.logout} onClick={handleLogout}>
-        <Icon icon="logout" />
-      </Link>
+      <div className="item">{darkMode ? <Icon icon="moon" onClick={toggle} /> : <Icon icon="sun" onClick={toggle} />}</div>
+      <div className="item">
+        <IconLink to={`/messages/${currentUser?.id}`} icon="email" />
+      </div>
+      <div className="item">
+        <IconLink to={`/notifications/${currentUser?.id}`} icon="notif" />
+      </div>
+      <div className="item">
+        <UserIcon />
+      </div>
+      <div className="item">
+        <IconLink className={nav.logout} onClick={handleLogout} icon="logout" />
+      </div>
     </div>
   );
 

@@ -9,8 +9,6 @@ export const AuthContextProvider = ({ children }) => {
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
-  console.log("currentUser:", currentUser);
-
   const login = async (inputs) => {
     const API = "http://localhost:3333/api/auth/login";
     try {
@@ -18,18 +16,18 @@ export const AuthContextProvider = ({ children }) => {
         withCredentials: true,
       });
 
-      console.log("Login response:", res.data); // Log the response from the server
+      // console.log("Login response:", res.data); // Log the response from the server
 
       if (res.status === 200) {
         setCurrentUser(res.data);
         localStorage.setItem("user", JSON.stringify(res.data));
         localStorage.setItem("token", res.data.token); // Store the token in local storage
-        console.log("Logged in successfully");
+        // console.log("Logged in successfully");
       } else {
-        console.log("Error during login:", res.data);
+        // console.log("Error during login:", res.data);
       }
     } catch (error) {
-      console.error("Error during login:", error);
+      // console.error("Error during login:", error);
     }
   };
 
@@ -43,7 +41,7 @@ export const AuthContextProvider = ({ children }) => {
         },
       );
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
     setCurrentUser(null);
     localStorage.removeItem("user");
@@ -55,7 +53,7 @@ export const AuthContextProvider = ({ children }) => {
       setCurrentUser(userData);
       localStorage.setItem("user", JSON.stringify(userData));
     } else {
-      console.error("Invalid currentUser:", userData);
+      // console.error("Invalid currentUser:", userData);
       setCurrentUser(null);
       localStorage.removeItem("user");
     }
