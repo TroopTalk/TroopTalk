@@ -3,7 +3,7 @@ import { Friends, Home, Login, Profile, Register, Messages } from "./pages/expor
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LeftBar, RightBar } from "./components/export.js";
 import { DarkModeContext } from "./context/darkModeContext";
-import { AuthContext } from "./context/authContext";
+import { AuthContext, AuthContextProvider } from "./context/authContext";
 import React, { useContext, useEffect } from "react";
 import Navbar from "./components/navbar/Navbar.jsx";
 import "./style.scss";
@@ -75,7 +75,7 @@ function App() {
       <Router>
         <Routes>
           <Route
-            path=""
+            path="/"
             element={
               <ProtectedRoute>
                 <ErrorBoundary>
@@ -83,13 +83,13 @@ function App() {
                 </ErrorBoundary>
               </ProtectedRoute>
             }>
-            <Route path="/" component={Home} />
-            <Route path="messages/:id" component={Messages} />
-            <Route path="profile/:id" component={Profile} />
-            <Route path="friends" component={Friends} />
+            <Route path="/" element={<Home />} />
+            <Route path="messages/:id" element={<Messages />} />
+            <Route path="profile/:id" element={<Profile />} />
+            <Route path="friends" element={<Friends />} />
           </Route>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </React.Fragment>

@@ -58,9 +58,10 @@ const authController = {
       }
 
       // Generate a JWT token
-      const token = jwt.sign({ userId: user._id }, "your_secret_key");
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
 
-      res.status(200).json({ message: "Login successful", token });
+      // Return the user object along with the token
+      res.status(200).json({ message: "Login successful", token, user });
     } catch (error) {
       console.error("Failed to login user:", error);
       res.status(500).json({ message: "Failed to login user" });

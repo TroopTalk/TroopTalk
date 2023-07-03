@@ -43,7 +43,10 @@ const Comments = ({ postId }) => {
         <button onClick={handleClick}>Send</button>
       </div>
       {error
-        ? "Something went wrong": isLoading ? "loading" : data.map((comment) => (
+        ? "Something went wrong"
+        : isLoading
+        ? "loading"
+        : data.map((comment) => (
             <div className="COMMENTS__comment">
               <img src={"/upload/" + comment.profilePic} alt="" />
               <div className="COMMENTS__info">
