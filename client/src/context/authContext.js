@@ -4,12 +4,7 @@ import axios from "axios";
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [currentUser, _setCurrentUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
-
-  const setCurrentUser = (user) => {
-    localStorage.setItem("user", JSON.stringify(user));
-    _setCurrentUser(user);
-  };
+  const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
 
   const login = async (inputs) => {
     const API = "http://localhost:3333/api/auth/login";
@@ -18,14 +13,12 @@ export const AuthContextProvider = ({ children }) => {
         withCredentials: true,
       });
 
-      console.log("Server response:", res); // Add this line to log the server response
-
       if (res.status === 200) {
         setCurrentUser(res.data);
         localStorage.setItem("user", JSON.stringify(res.data));
+        localStorage.setItem("token", res.data.token); // Store the token in local storage
         console.log("Logged in successfully");
       } else {
-        // Handle error messages returned by the server
         console.log("Error during login:", res.data);
       }
     } catch (error) {
@@ -47,6 +40,7 @@ export const AuthContextProvider = ({ children }) => {
     }
     setCurrentUser(null);
     localStorage.removeItem("user");
+    localStorage.removeItem("token"); // Remove the token from local storage
   };
 
   return <AuthContext.Provider value={{ currentUser, login, logout }}>{children}</AuthContext.Provider>;

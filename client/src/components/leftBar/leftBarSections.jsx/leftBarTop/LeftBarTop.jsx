@@ -1,36 +1,9 @@
-import { friends, groups, market, memories, watch } from "../../assets/img";
-import { AuthContext } from "../../context/export.js";
+import LeftBarLinks from "../leftBarLinks/LeftBarLinks.jsx";
+import { AuthContext } from "../../../../context/export.js";
 import { AccountCircle } from "@mui/icons-material";
+import { menuItems } from "./menuItems.js";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-
-const menuItems = [
-  {
-    icon: friends,
-    label: "Friends",
-    path: "/friends",
-  },
-  {
-    icon: groups,
-    label: "Groups",
-    path: "/groups",
-  },
-  {
-    icon: market,
-    label: "Marketplace",
-    path: "/marketplace",
-  },
-  {
-    icon: watch,
-    label: "Watch",
-    path: "/watch",
-  },
-  {
-    icon: memories,
-    label: "Memories",
-    path: "/memories",
-  },
-];
 
 const LeftBarTop = () => {
   const { currentUser } = useContext(AuthContext);
@@ -48,14 +21,7 @@ const LeftBarTop = () => {
           <span>{currentUser.name}</span>
         </Link>
       </div>
-      {menuItems.map((item) => (
-        <Link to={item.path}>
-          <div className="LEFT_BAR__item" key={item.label}>
-            <img src={item.icon} alt={`${item.label} icon`} />
-            <span>{item.label}</span>
-          </div>
-        </Link>
-      ))}
+      <LeftBarLinks menuItems={menuItems} />
     </div>
   );
 };

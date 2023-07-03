@@ -2,11 +2,12 @@ import { Posts, Share } from "../../components/export.js";
 import "./home.scss";
 
 const Home = () => {
+  console.log("Home rendered");
   return (
     <div className="HOME__">
       {/* <Stories /> */}
-      <Share />
-      <Posts />
+      {/* <Share /> */}
+      {/* <Posts /> */}
     </div>
   );
 };

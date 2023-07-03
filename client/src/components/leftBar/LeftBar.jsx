@@ -1,6 +1,4 @@
-import { default as LeftBarTop } from "./LeftBarTop.jsx";
-import { default as LeftBarMid } from "./LeftBarMid.jsx";
-import { default as LeftBarEnd } from "./LeftBarEnd.jsx";
+import { LeftBarEnd, LeftBarMid, LeftBarTop } from "./leftBarSections.jsx/export";
 import "./leftBar.scss";
 
 const LeftBar = () => {
