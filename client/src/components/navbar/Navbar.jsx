@@ -1,10 +1,10 @@
 import { AuthContext, DarkModeContext } from "../../context/export.js";
 import { Link, useNavigate } from "react-router-dom";
 import Icon from "../customHTML/Icon.jsx";
+import { NavLayout, NavLeft } from "./import.js";
 import { useContext } from "react";
 import { nav } from "./info.js";
 import "./navbar.scss";
-import { NavLeft } from "./import.js";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -44,12 +44,7 @@ const Navbar = () => {
     </div>
   );
 
-  return (
-    <div className={nav.nav} style={darkLight}>
-      <NavLeft />
-      <NavRight />
-    </div>
-  );
+  return <NavLayout className={nav.nav} left={<NavLeft />} right={<NavRight />} style={darkLight} />;
 };
 
 export default Navbar;
