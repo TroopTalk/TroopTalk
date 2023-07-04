@@ -1,6 +1,6 @@
 import User from "../models/users.js";
-import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
 const authController = {
   registerUser: async (req, res) => {
@@ -16,8 +16,11 @@ const authController = {
         return res.status(400).json({ message: "Username or email already exists" });
       }
 
-      // Hash the password
-      const hashedPassword = await bcrypt.hash(password, 10);
+      // Generate a random salt
+      const salt = await bcrypt.genSalt(12);
+
+      // Hash the password with the generated salt
+      const hashedPassword = await bcrypt.hash(password, salt);
 
       // Create a new user
       const newUser = new User({
