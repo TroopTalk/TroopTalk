@@ -7,14 +7,16 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Protected Routes accessible after logging in */}
         <Route path="/" element={<ProtectedRouteWrapper />}>
           <Route path="/" element={<Home />} />
           <Route path="messages/:id" element={<Messages />} />
           <Route path="profile/:id" element={<Profile />} />
           <Route path="friends" element={<Friends />} />
         </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
