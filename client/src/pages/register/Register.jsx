@@ -2,37 +2,30 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import "./register.scss";
-import InputField from "../../components/customHTML/InputField";
 
 const Register = () => {
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({
-    firstName: "",
-    lastName: "",
-    serviceBranch: "",
     username: "",
     email: "",
     password: "",
+    name: "",
   });
-
   const [err, setErr] = useState(null);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInputs((prev) => ({ ...prev, [name]: value }));
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log(inputs); // Check the inputs object
-    const API = "http://localhost:3333/api/auth/register";
+    const API = process.env.REACT_APP_REGISTER_API;
     try {
       await axios.post(API, inputs);
       navigate("/login");
     } catch (err) {
-      const errorMessage = err.response.data.message;
-      setErr(errorMessage);
+      setErr(err.response.data);
     }
   };
 
@@ -50,13 +43,11 @@ const Register = () => {
         <div className="REGISTER__right">
           <h1>Register</h1>
           <form>
-            <InputField placeholder="First Name" value={inputs.firstName} name="firstName" type="text" handleChange={handleChange} />
-            <InputField placeholder="Last Name" value={inputs.lastName} name="lastName" type="text" handleChange={handleChange} />
-            <InputField placeholder="Service Branch" value={inputs.serviceBranch} name="serviceBranch" type="text" handleChange={handleChange} />
-            <InputField placeholder="Username" value={inputs.username} name="username" type="text" handleChange={handleChange} />
-            <InputField placeholder="Email" value={inputs.email} name="email" type="email" handleChange={handleChange} />
-            <InputField placeholder="Password" value={inputs.password} name="password" type="password" handleChange={handleChange} />
-            {err && <div className="REGISTER__error">{err}</div>}
+            <input type="text" placeholder="Username" name="username" onChange={handleChange} />
+            <input type="email" placeholder="Email" name="email" onChange={handleChange} />
+            <input type="password" placeholder="Password" name="password" onChange={handleChange} />
+            <input type="text" placeholder="Name" name="name" onChange={handleChange} />
+            {err && err}
             <button onClick={handleClick}>Register</button>
           </form>
         </div>
