@@ -5,7 +5,7 @@ const LeftBarEnd = () => {
   return (
     <div className="LEFT_BAR__menu">
       <span>Others</span>
-      <LeftBarLinks menuItems={menuItems} />
+      <LeftBarLinks items={menuItems} />
     </div>
   );
 };

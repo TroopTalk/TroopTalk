@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 import React from "react";
-import { menuItems } from "../leftBarEnd/menuItems";
 
-const LeftBarLinks = () => {
+const LeftBarLinks = ({ items }) => {
   return (
     <div>
-      {menuItems.map((item, index) => (
+      {items.map((item, index) => (
         <Link key={index} to={item.path}>
-          {item.icon}
-          <span>{item.title}</span>
+          <img src={item.icon} alt={item.label} />
+          <span className="LeftBarLinks">{item.label}</span>
         </Link>
       ))}
     </div>
   );
 };
+
 export default LeftBarLinks;

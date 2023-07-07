@@ -4,6 +4,7 @@ import { AuthContext } from "../../../../context/export";
 import { AccountCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { menuItems } from "../leftBarEnd/menuItems";
 
 const LeftBarTop = () => {
   const { currentUser } = useContext(AuthContext);
@@ -23,7 +24,7 @@ const LeftBarTop = () => {
           <span>{name ? name : "User"}</span>
         </Link>
       </div>
-      <LeftBarLinks />
+      <LeftBarLinks items={menuItems} />
     </div>
   );
 };
