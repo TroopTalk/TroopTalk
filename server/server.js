@@ -1,13 +1,8 @@
+// * Dep Imports
+import { bodyParser, cookieParser, cors, dotenv, express, mongoose } from "./packages.js";
+
 // * Route imports
 import authRouter from "./routes/auth.js";
-
-// * Dep Imports
-import bodyParser from "body-parser";
-import cookieParser from "cookie-parser";
-import mongoose from "mongoose";
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
 
 // * express as const
 const app = express();
@@ -21,16 +16,16 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-// * Middlewares
+// * Middleware
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: process.env.ALLOWED_ORIGINS.split(", "),
     credentials: true,
   }),
 );
 
 // * Router mounts
-app.use("/api/auth", authRouter);
+app.use(process.env.AUTH_ROUTE, authRouter);
 
 // * Database and Server connection
 mongoose
