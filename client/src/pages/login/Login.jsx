@@ -1,9 +1,8 @@
 import { AuthContext } from "../../context/authContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
+import { LoginLeft, SignIn } from "./import";
 import "./login.scss";
-import LoginLeft from "./LoginLeft";
-import SignIn from "./SignIn";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
