@@ -4,11 +4,17 @@ import { AuthContext } from "../../context/export.js";
 import { AccountCircle } from "@mui/icons-material";
 import { useContext, useState } from "react";
 import { makeRequest } from "../../axios";
+import ShareItem from "./ShareItem.jsx";
+import axios from "axios";
 import "./share.scss";
 
 const Share = () => {
   const [file, setFile] = useState(null);
   const [desc, setDesc] = useState("");
+
+  const { currentUser } = useContext(AuthContext);
+
+  const queryClient = useQueryClient();
 
   const upload = async () => {
     try {
@@ -20,10 +26,6 @@ const Share = () => {
       console.log(err);
     }
   };
-
-  const { currentUser } = useContext(AuthContext);
-
-  const queryClient = useQueryClient();
 
   const mutation = useMutation(
     (newPost) => {
@@ -45,34 +47,46 @@ const Share = () => {
     setFile(null);
   };
 
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      const string = reader.result;
+
+      axios
+        .post("/api/upload", { image: string })
+        .then((res) => {
+          // Handle the response
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    };
+
+    reader.readAsDataURL(file); // Read the file as a data URL (base64)
+  };
+
   return (
     <div className="SHARE__">
       <div className="SHARE__container">
         <div className="SHARE__top">
           <div className="SHARE__left">
-            {currentUser.profilePic ? <img src={`/upload/${currentUser.profilePic}`} alt={`${currentUser.name}'s profile pic`} /> : <AccountCircle>{currentUser.name[0]}</AccountCircle>}
-            <input type="text" placeholder={`What's on your mind ${currentUser.name}?`} onChange={(e) => setDesc(e.target.value)} value={desc} />
+            {/* {currentUser.profilePic ? <img src={`/upload/${currentUser.profilePic}`} alt={`${currentUser.name}'s profile pic`} /> : <AccountCircle>{currentUser.name[0]}</AccountCircle>} */}
+            <input type="text" placeholder={`What's on your mind ${currentUser.name}?`} onChange={(e) => setDesc(e.target.value)} value={desc} style={{ display: "none" }} />
           </div>
           <div className="SHARE__right">{file && <img className="SHARE__file" alt="Selected file preview" src={URL.createObjectURL(file)} />}</div>
         </div>
         <hr />
         <div className="SHARE__bottom">
           <div className="SHARE__left">
-            <input type="file" id="file" style={{ display: "none" }} onChange={(e) => setFile(e.target.files[0])} />
-            <label htmlFor="file">
-              <div className="SHARE__item">
-                <img src={image} alt="Add img icon" />
-                <span>Add Image</span>
-              </div>
+            <input type="file" id="file-input" onChange={handleFileInputChange} style={{ display: "none" }} />
+            <label htmlFor="file-input" className="custom-file-label">
+              Upload Image
             </label>
-            <div className="SHARE__item">
-              <img src={map} alt="Add place icon" />
-              <span>Add Place</span>
-            </div>
-            <div className="SHARE__item">
-              <img src={friend} alt="Tag friends icon" />
-              <span>Tag Friends</span>
-            </div>
+            <ShareItem img={image} alt={"Add img icon"} span={"Add img icon"} />
+            <ShareItem img={map} alt={"Add place icon"} span={"Add place icon"} />
+            <ShareItem img={friend} alt={"Tag Friends Icon"} span={"Tag Friends"} />
           </div>
           <div className="SHARE__right">
             <button onClick={handleClick}>Share</button>
