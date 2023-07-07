@@ -1,8 +1,8 @@
 import { DarkModeContext } from "../../context/darkModeContext";
 import Icon from "../customHTML/Icon.jsx";
 import { Link } from "react-router-dom";
+import { input, nav } from "./info";
 import { useContext } from "react";
-import { nav } from "./info";
 
 const NavLeft = () => {
   const { darkMode } = useContext(DarkModeContext);
@@ -16,7 +16,7 @@ const NavLeft = () => {
       <Icon icon="grid" />
       <div className={nav.search}>
         <Icon icon="search" />
-        <input type="text" placeholder="Search..." />
+        <input {...input} />
       </div>
     </div>
   );

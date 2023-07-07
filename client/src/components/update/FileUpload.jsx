@@ -5,6 +5,13 @@ const FileUpload = ({ label, file, setFile, user }) => {
     setFile(e.target.files[0]);
   };
 
+  const input = {
+    type: "file",
+    id: label,
+    style: { display: "none" },
+    onChange: handleChange,
+  };
+
   return (
     <div>
       <label htmlFor={label}>
@@ -14,7 +21,7 @@ const FileUpload = ({ label, file, setFile, user }) => {
           <CloudUploadIcon className="UPDATE__icon" />
         </div>
       </label>
-      <input type="file" id={label} style={{ display: "none" }} onChange={handleChange} />
+      <input {...input} />
     </div>
   );
 };
