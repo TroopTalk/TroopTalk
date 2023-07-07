@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import "./login.scss";
 import LoginLeft from "./LoginLeft";
+import SignIn from "./SignIn";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
@@ -51,15 +52,7 @@ const Login = () => {
       <div className="LOGIN__">
         <div className="LOGIN__card">
           <LoginLeft />
-          <div className="LOGIN__right">
-            <h1>Login</h1>
-            <form onSubmit={handleLogin}>
-              <input type="email" placeholder="Email" name="email" onChange={handleChange} />
-              <input type="password" placeholder="Password" name="password" onChange={handleChange} />
-              {err && <p>{err}</p>}
-              <button type="submit">Login</button>
-            </form>
-          </div>
+          <SignIn handleLogin={handleLogin} handleChange={handleChange} err={err} />
         </div>
       </div>
     </div>
