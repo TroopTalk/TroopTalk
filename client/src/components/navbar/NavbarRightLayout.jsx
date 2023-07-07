@@ -1,9 +1,14 @@
 import IconLink from "../customHTML/IconLink";
 
 const NavbarRightLayout = ({ to, icon }) => {
+  const iconLink = {
+    to: to,
+    icon: icon,
+  };
+
   return (
     <div className="item">
-      <IconLink to={to} icon={icon} />
+      <IconLink {...iconLink} />
     </div>
   );
 };

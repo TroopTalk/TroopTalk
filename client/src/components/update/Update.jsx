@@ -72,9 +72,17 @@ const Update = ({ setOpenUpdate, user }) => {
             <FileUpload type="text" label="cover" file={cover} setFile={setCover} user={user} />
             <FileUpload type="text" label="profile" file={profile} setFile={setProfile} user={user} />
           </div>
-          {inputFields.map((field) => (
-            <InputField key={field.name} label={field.label} value={field.value} name={field.name} handleChange={handleChange} />
-          ))}
+          {inputFields.map((field) => {
+            const input = {
+              key: field.name,
+              label: field.label,
+              value: field.value,
+              name: field.name,
+              handleChange: handleChange,
+            };
+
+            return <InputField {...input} />;
+          })}
           <button onClick={handleClick}>Update</button>
         </form>
         <button className="UPDATE__close" onClick={() => setOpenUpdate(false)}>

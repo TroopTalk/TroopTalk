@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { AuthContext } from "../../context/authContext";
 import { useContext, useState } from "react";
 import { makeRequest } from "../../axios";
+import { input } from "./context";
 import moment from "moment";
 import "./comments.scss";
 
@@ -39,7 +40,7 @@ const Comments = ({ postId }) => {
     <div className="COMMENTS__">
       <div className="COMMENTS__write">
         <img src={"/upload/" + currentUser.profilePic} alt="" />
-        <input type="text" placeholder="write a comment" value={desc} onChange={(e) => setDesc(e.target.value)} />
+        <input {...input} value={desc} onChange={(e) => setDesc(e.target.value)} />
         <button onClick={handleClick}>Send</button>
       </div>
       {error

@@ -6,3 +6,9 @@ export const nav = {
   user: "Navbar__user",
   logout: "NAVBAR__logout",
 };
+
+// * NavLeft.jsx
+export const input = {
+  type: "text",
+  placeholder: "Search...",
+};

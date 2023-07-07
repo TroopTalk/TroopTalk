@@ -1,8 +1,16 @@
 const InputField = ({ label, placeholder, value, name, type, handleChange }) => {
+  const input = {
+    type: type,
+    placeholder: placeholder,
+    value: value,
+    name: name,
+    onChange: handleChange,
+  };
+
   return (
     <div>
       <label>{label}</label>
-      <input type={type} placeholder={placeholder} value={value} name={name} onChange={handleChange} />
+      <input {...input} />
     </div>
   );
 };
