@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { map, image, friend } from "../../assets/img.js";
+import { imageItem, mapItem, friendItem } from "./items.js";
 import { AuthContext } from "../../context/export.js";
 import { AccountCircle } from "@mui/icons-material";
 import { useContext, useState } from "react";
@@ -84,9 +84,9 @@ const Share = () => {
             <label htmlFor="file-input" className="custom-file-label">
               Upload Image
             </label>
-            <ShareItem img={image} alt={"Add img icon"} span={"Add img icon"} />
-            <ShareItem img={map} alt={"Add place icon"} span={"Add place icon"} />
-            <ShareItem img={friend} alt={"Tag Friends Icon"} span={"Tag Friends"} />
+            <ShareItem {...imageItem} />
+            <ShareItem {...mapItem} />
+            <ShareItem {...friendItem} />
           </div>
           <div className="SHARE__right">
             <button onClick={handleClick}>Share</button>
