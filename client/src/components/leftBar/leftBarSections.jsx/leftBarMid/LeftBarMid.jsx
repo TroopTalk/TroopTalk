@@ -5,7 +5,9 @@ const LeftBarMid = () => {
   return (
     <div className="LEFT_BAR__menu">
       <span>Your shortcuts</span>
-      <LeftBarLinks menuItems={menuItems} />
+      <div>
+        <LeftBarLinks items={menuItems} />
+      </div>
     </div>
   );
 };

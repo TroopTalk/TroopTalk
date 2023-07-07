@@ -1,4 +1,4 @@
-import { courses, fund, tutorials } from "../../../../assets/img";
+import { fund, tutorials, courses } from "../../../../assets/img";
 
 export const menuItems = [
   {
