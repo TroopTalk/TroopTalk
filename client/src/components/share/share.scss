@@ -43,10 +43,11 @@
           flex: 1;
           display: flex;
           justify-content: flex-end;
+
           .SHARE__file {
             width: 100px;
             height: 100px;
-            object-fit: cover;
+            object-fit: contain;
             border-radius: 0px;
           }
         }

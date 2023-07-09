@@ -4,6 +4,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { useNavigate } from "react-router-dom";
 import { handleChange } from "../../util/util";
 import Checkbox from "@mui/material/Checkbox";
+import Button from '@mui/material/Button';
 import { useState } from "react";
 import axios from "axios";
 
@@ -61,7 +62,7 @@ const SignUp = () => {
       <input {...emailProps} value={email.value} onChange={(e) => handleChange(e, setInputs)} />
       <input {...passProps} value={password.value} onChange={(e) => handleChange(e, setInputs)} />
       {err && <p>{err.message}</p>}
-      <button onClick={handleClick}>Register</button>
+      <Button onClick={handleClick}>Register</Button>
     </form>
   );
 };

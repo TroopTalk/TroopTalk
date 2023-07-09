@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const LoginLeft = () => {
@@ -7,7 +8,7 @@ const LoginLeft = () => {
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum, alias totam numquam ipsa exercitationem dignissimos, error nam, consequatur.</p>
       <span>Don't you have an account?</span>
       <Link to="/register">
-        <button>Register</button>
+        <Button>Register</Button>
       </Link>
     </div>
   );

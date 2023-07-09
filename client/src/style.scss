@@ -1,9 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
+}
+
+.css-sghohy-MuiButtonBase-root-MuiButton-root {
+  text-transform: inherit !important;
 }
 
 $themes: (

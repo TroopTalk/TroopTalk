@@ -1,103 +1,91 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { imageItem, mapItem, friendItem } from "./items.js";
 import { AuthContext } from "../../context/export.js";
+import { useContext, useState, useRef } from "react";
+import { ShareBottom, ShareTop } from "./import.js";
 import { AccountCircle } from "@mui/icons-material";
-import { useContext, useState } from "react";
 import { makeRequest } from "../../axios";
-import Button from "@mui/material/Button";
-import ShareItem from "./ShareItem.jsx";
 import axios from "axios";
 import "./share.scss";
 
 const Share = () => {
   const [file, setFile] = useState(null);
-  const [desc, setDesc] = useState("");
+  const [text, setText] = useState("");
 
   const { currentUser } = useContext(AuthContext);
 
-  const queryClient = useQueryClient();
+  const fileInputRef = useRef(null);
 
   const upload = async () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
       const res = await makeRequest.post("/share", formData);
+      console.log(formData);
       return res.data;
     } catch (err) {
       console.log(err);
     }
   };
 
-  const mutation = useMutation(
-    (newPost) => {
-      return makeRequest.post("/posts/share", newPost);
-    },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["posts"]);
-      },
-    },
-  );
-
-  const handleClick = async (e) => {
-    e.preventDefault();
-    let imgUrl = "";
-    if (file) imgUrl = await upload();
-    mutation.mutate({ desc, img: imgUrl });
-    setDesc("");
-    setFile(null);
+  const handleClick = () => {
+    // Perform the API request directly without using useMutation
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("text", text);
+    axios
+      .post("/api/upload", formData)
+      .then((res) => {
+        // Handle the response if needed
+        // Perform the API request to save the post with the image URL
+        const imgUrl = res.data.imageUrl;
+        axios
+          .post("/posts/share", { text, img: imgUrl })
+          .then((res) => {
+            // Handle the response if needed
+            // Reset the state
+            setText("");
+            setFile(null);
+          })
+          .catch((err) => {
+            // Handle error if needed
+          });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
+    setFile(file);
+  };
 
-    reader.onloadend = () => {
-      const string = reader.result;
-
-      axios
-        .post("/api/upload", { image: string })
-        .then((res) => {
-          // Handle the response
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    };
-
-    reader.readAsDataURL(file); // Read the file as a data URL (base64)
+  const props = {
+    shareTopProps: {
+      placeholder: `What's on your mind ${currentUser.name}?`,
+      onChange: (e) => setText(e.target.value),
+      value: text,
+      file: file,
+    },
+    shareBottomProps: {
+      handleFileInputChange: handleFileInputChange,
+      fileInputRef: fileInputRef,
+      onClick: upload,
+    },
   };
 
   return (
     <div className="SHARE__">
       <div className="SHARE__container">
-        <div className="SHARE__top">
-          <div className="SHARE__left">
-            {/* {currentUser.profilePic ? <img src={`/upload/${currentUser.profilePic}`} alt={`${currentUser.name}'s profile pic`} /> : <AccountCircle>{currentUser.name[0]}</AccountCircle>} */}
-            <input type="text" placeholder={`What's on your mind ${currentUser.name}?`} onChange={(e) => setDesc(e.target.value)} value={desc} style={{ display: "none" }} />
-          </div>
-          <div className="SHARE__right">{file && <img className="SHARE__file" alt="Selected file preview" src={URL.createObjectURL(file)} />}</div>
-        </div>
+        <ShareTop {...props.shareTopProps} />
         <hr />
-        <div className="SHARE__bottom">
-          <div className="SHARE__left">
-            <input type="file" id="file-input" onChange={handleFileInputChange} style={{ display: "none" }} />
-            <label htmlFor="file-input" className="custom-file-label">
-              Upload Image
-            </label>
-            <ShareItem {...imageItem} />
-            <ShareItem {...mapItem} />
-            <ShareItem {...friendItem} />
-          </div>
-          <div className="SHARE__right">
-            <Button variant="contained" onClick={handleClick}>
-              Share
-            </Button>
-          </div>
-        </div>
+        <ShareBottom {...props.shareBottomProps} />
       </div>
     </div>
   );
 };
 
 export default Share;
+
+{
+  /* {currentUser.profilePic ? <img src={`/upload/${currentUser.profilePic}`} alt={`${currentUser.name}'s profile pic`} /> : <AccountCircle>{currentUser.name[0]}</AccountCircle>} */
+}
