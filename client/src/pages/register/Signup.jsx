@@ -2,15 +2,14 @@ import { firstNameProps, lastNameProps, emailProps, usernameProps, passProps, in
 import { airForceCheckbox, marinesCheckBox, navyCheckbox, coastguardCheckbox, spaceForceCheckbox } from "./inputs";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useNavigate } from "react-router-dom";
-import { handleChange, handleServiceBranchChange } from "../../util/util";
+import { handleChange } from "../../util/util";
 import Checkbox from "@mui/material/Checkbox";
 import { useState } from "react";
 import axios from "axios";
-import ChipSelect from "../../components/mui/select/ChipSelect";
 
 const SignUp = () => {
   const [inputs, setInputs] = useState({ ...inputHook });
-  const { firstName, lastName, serviceBranch, username, email, password } = inputs;
+  const { firstName, lastName, username, email, password } = inputs;
   const [err, setErr] = useState(null);
   const navigate = useNavigate();
 
