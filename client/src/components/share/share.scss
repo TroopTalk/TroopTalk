@@ -12,15 +12,17 @@
 
     .SHARE__container {
       padding: 20px;
+
       .SHARE__top {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: space-between;
 
         .SHARE__left {
           display: flex;
           align-items: center;
-          flex: 3;
+          width: 100%;
 
           img,
           svg {
@@ -35,7 +37,7 @@
             outline: none;
             padding: 20px 10px;
             background-color: transparent;
-            width: 60%;
+            width: 100%;
             color: themed("textColor");
           }
         }
@@ -44,11 +46,23 @@
           display: flex;
           justify-content: flex-end;
 
-          .SHARE__file {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            border-radius: 0px;
+          .SHARE_right_file-preview {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #666;
+            border-radius: 1em;
+            padding: 0.5em;
+            margin-top: 1em;
+
+            img {
+              height: 200px;
+              object-fit: contain;
+              border-radius: 0px;
+            }
+
+            button {
+              margin-top: 1em;
+            }
           }
         }
       }
