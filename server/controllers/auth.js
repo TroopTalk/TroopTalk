@@ -7,14 +7,13 @@ export const registerUser = async (req, res) => {
 
     // Check if the username or email already exists
     const existingUser = await User.findOne({
-      // use $or: for comparison, this is mongoDB syntax
       $or: [{ username }, { email }],
     });
 
-    if (existingUser.serviceBranch === "Please Select".toLowerCase()) {
+    if (serviceBranch === "Please Select".toLowerCase()) {
       return res.status(400).json({ message: "Please select a Service Branch" });
-    } else if (existingUser.username) {
-      return res.status(400).json({ message: "Username already exists" });
+    } else if (existingUser) {
+      return res.status(400).json({ message: "Username or email already exists" });
     }
 
     // Generate a random salt
@@ -42,6 +41,7 @@ export const registerUser = async (req, res) => {
     res.status(500).json({ message: "Failed to register user", error: error.message });
   }
 };
+
 
 export const loginUser = async (req, res) => {
   try {

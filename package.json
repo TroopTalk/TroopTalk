@@ -3,5 +3,11 @@
   "version": "1.0.0",
   "scripts": {
     "install": "cd server && npm install && cd ../client && npm install"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/public-sans": "^5.0.5",
+    "@mui/joy": "^5.0.0-alpha.86"
   }
 }

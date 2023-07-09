@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   serviceBranch: {
-    type: String,
+    type: [String],
     required: true,
   },
   username: {
