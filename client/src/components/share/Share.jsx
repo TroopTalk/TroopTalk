@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/export.js";
 import { AccountCircle } from "@mui/icons-material";
 import { useContext, useState } from "react";
 import { makeRequest } from "../../axios";
+import Button from "@mui/material/Button";
 import ShareItem from "./ShareItem.jsx";
 import axios from "axios";
 import "./share.scss";
@@ -89,7 +90,9 @@ const Share = () => {
             <ShareItem {...friendItem} />
           </div>
           <div className="SHARE__right">
-            <button onClick={handleClick}>Share</button>
+            <Button variant="contained" onClick={handleClick}>
+              Share
+            </Button>
           </div>
         </div>
       </div>
