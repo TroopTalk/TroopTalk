@@ -7,11 +7,14 @@ export const registerUser = async (req, res) => {
 
     // Check if the username or email already exists
     const existingUser = await User.findOne({
+      // use $or: for comparison, this is mongoDB syntax
       $or: [{ username }, { email }],
     });
 
-    if (existingUser) {
-      return res.status(400).json({ message: "Username or email already exists" });
+    if (existingUser.serviceBranch === "Please Select".toLowerCase()) {
+      return res.status(400).json({ message: "Please select a Service Branch" });
+    } else if (existingUser.username) {
+      return res.status(400).json({ message: "Username already exists" });
     }
 
     // Generate a random salt
@@ -45,7 +48,7 @@ export const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     // Find the user by email
-    const user = await User.findOne({ email }).maxTimeMS(30000);
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -59,7 +62,9 @@ export const loginUser = async (req, res) => {
     }
 
     // Generate a JWT token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+    // ! to set token expiration {expiresIn: '1m'} after JWT_SECRET with a ,
+    // ! use front end to control automatic log out
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET /* ! to set token expiration {expiresIn: '1m'}*/);
 
     // Return the user object along with the token
     res.status(200).json({ message: "Login successful", token, user });
