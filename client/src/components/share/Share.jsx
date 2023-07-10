@@ -59,10 +59,15 @@ const Share = () => {
     setFile(file);
   };
 
+  const handleRemovePicture = () => {
+    setFile(null);
+  };
+
   const props = {
     shareTopProps: {
       placeholder: `What's on your mind ${currentUser.name}?`,
       onChange: (e) => setText(e.target.value),
+      onRemovePicture: handleRemovePicture,
       value: text,
       file: file,
     },
