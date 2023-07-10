@@ -1,20 +1,23 @@
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
+import Button from "../customHTML/mui/button/Button";
 
 const ShareTop = ({ placeholder, onChange, value, file, onRemovePicture }) => {
   return (
     <div className="SHARE__top">
       <div className="SHARE__left">
-        <input type="text" placeholder={placeholder} onChange={onChange} value={value} />
+        <textarea type="text" placeholder={placeholder} onChange={onChange} value={value} />
       </div>
       <div className="SHARE__right">
         {file && (
           <div className="SHARE_right_file-preview">
             <img className="SHARE__file" alt="Selected file preview" src={URL.createObjectURL(file)} />
-            <Button variant="contained" onClick={onRemovePicture}>Remove</Button>
+            <hr />
+            <Button variant="contained" onClick={onRemovePicture} text="Remove" />
           </div>
         )}
       </div>
     </div>
   );
 };
+
 export default ShareTop;

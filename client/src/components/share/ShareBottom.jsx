@@ -1,6 +1,5 @@
-import { Button } from "@mui/material";
-import ShareItem from "./ShareItem";
-import ShareRight from "./ShareRight";
+import Button from "../customHTML/mui/button/Button";
+import { ShareRight, ShareItem } from "./import";
 import { friendItem, mapItem } from "./items";
 
 const ShareBottom = ({ handleFileInputChange, fileInputRef, onClick }) => {
@@ -13,9 +12,7 @@ const ShareBottom = ({ handleFileInputChange, fileInputRef, onClick }) => {
       <div className="SHARE__left">
         <input type="file" id="file-input" onChange={handleFileInputChange} style={{ display: "none" }} ref={fileInputRef} />
         <label htmlFor="file-input" className="custom-file-label">
-          <Button variant="contained" onClick={handleButtonClick}>
-            Upload Image
-          </Button>
+          <Button text="Upload Image" variant="contained" onClick={handleButtonClick} />
         </label>
         <ShareItem {...mapItem} />
         <ShareItem {...friendItem} />
