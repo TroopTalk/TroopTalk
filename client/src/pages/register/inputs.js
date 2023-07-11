@@ -11,31 +11,31 @@ export const inputHook = {
 // * Props
 export const firstNameProps = {
   type: "text",
-  placeholder: "First Name",
+  label: "First Name",
   name: "firstName",
 };
 
 export const lastNameProps = {
   type: "text",
-  placeholder: "Last Name",
+  label: "Last Name",
   name: "lastName",
 };
 
 export const usernameProps = {
   type: "text",
-  placeholder: "Username",
+  label: "Username",
   name: "username",
 };
 
 export const emailProps = {
   type: "email",
-  placeholder: "Email",
+  label: "Email",
   name: "email",
 };
 
 export const passProps = {
   type: "password",
-  placeholder: "Password",
+  label: "Password",
   name: "password",
 };
 

@@ -1,8 +1,7 @@
-import Button from '@mui/material/Button';
+import Button from "../../components/customHTML/mui/button/Button";
 import { Link } from "react-router-dom";
 import SignUp from "./Signup";
 import "./register.scss";
-
 
 const Register = () => {
   return (
@@ -13,7 +12,7 @@ const Register = () => {
           <p>Welcome to TroopTalk, a place for veterans to come together and socialize with each other!</p>
           <span>Do you have an account?</span>
           <Link to="/login">
-            <Button>Login</Button>
+            <Button  text="Login" />
           </Link>
         </div>
         <div className="REGISTER__right">
