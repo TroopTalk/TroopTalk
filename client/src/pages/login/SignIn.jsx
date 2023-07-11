@@ -1,15 +1,15 @@
-import Button from "@mui/material/Button";
-import Input from "@mui/material/Input";
+import Button from "../../components/customHTML/mui/button/Button";
+import { InputMui } from "../../components/customHTML/mui/export";
 
 const SignIn = ({ handleLogin, handleChange, err }) => {
   return (
     <div className="LOGIN__right">
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
-        <Input type="email" placeholder="Email" name="email" onChange={handleChange} />
-        <Input type="password" placeholder="Password" name="password" onChange={handleChange} />
+        <InputMui type="email" name="email" label="Email" onChange={handleChange} />
+        <InputMui type="password" name="password" label="Password" onChange={handleChange} />
         {err && <p>{err}</p>}
-        <Button variant="contained" type="submit">Share</Button>
+        <Button variant="contained" type="submit" text="Share" />
       </form>
     </div>
   );
