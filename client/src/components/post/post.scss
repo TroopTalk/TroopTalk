@@ -1,22 +1,15 @@
 @import "../../style.scss";
+@import "./mixins";
 
 .POST__ {
   @include themify($themes) {
-    -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
-    -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
-    box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
-    border-radius: 20px;
-    background-color: themed("bg");
-    color: themed("textColor");
+    @include POST__;
 
     .POST__container {
       padding: 20px;
 
       .POST__user {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
+        @include POST__user;
 
         .POST__userInfo {
           display: flex;
@@ -42,15 +35,9 @@
             }
           }
         }
+
         button {
-          position: absolute;
-          top: 30px;
-          right: 0;
-          border: none;
-          background-color: #f0544f;
-          padding: 5px;
-          cursor: pointer;
-          color: white;
+          @include POST__user_button;
         }
       }
 
@@ -71,11 +58,7 @@
         gap: 20px;
 
         .POST__item {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          cursor: pointer;
-          font-size: 14px;
+          @include POST__item;
         }
       }
     }

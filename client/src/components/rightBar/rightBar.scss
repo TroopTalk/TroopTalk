@@ -1,67 +1,32 @@
 @import "../../style.scss";
+@import "./mixins";
 
 .RIGHT_BAR__ {
   @include themify($themes) {
-    flex: 3;
-    position: sticky;
-    top: 70px;
-    height: calc(100vh - 70px);
-    overflow: scroll;
-    background-color: themed("bgSoft");
-
-    @include mobile {
-      display: none;
-    }
-    @include tablet {
-      display: none;
-    }
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    @include RIGHT_BAR__;
 
     .RIGHT_BAR__container {
       padding: 20px;
 
       .RIGHT_BAR__item {
-        -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-        -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-        box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-        padding: 20px;
-        margin-bottom: 20px;
-        background-color: themed("bg");
+        @include RIGHT_BAR__item;
 
         span {
           color: gray;
         }
 
         .RIGHT_BAR__user {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin: 20px 0px;
+          @include RIGHT_BAR__user;
 
           .RIGHT_BAR__userInfo {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            position: relative;
+            @include RIGHT_BAR__userInfo;
 
             img {
-              width: 40px;
-              height: 40px;
-              border-radius: 50%;
-              object-fit: cover;
+              @include RIGHT_BAR__userInfo_img;
             }
 
             .RIGHT_BAR__online {
-              width: 12px;
-              height: 12px;
-              border-radius: 50%;
-              background-color: limegreen;
-              position: absolute;
-              top: 0;
-              left: 30px;
+              @include RIGHT_BAR__online;
             }
 
             p {

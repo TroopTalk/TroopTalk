@@ -1,23 +1,9 @@
 @import "../../style.scss";
+@import "./mixins_.scss";
 
 .LeftBar__ {
   @include themify($themes) {
-    display: flex;
-    flex: 2;
-    position: sticky;
-    top: 70px;
-    height: calc(100vh - 70px);
-    overflow: scroll;
-    background-color: themed("bg");
-    color: themed("textColor");
-
-    @include mobile {
-      display: none;
-    }
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    @include LeftBar__;
 
     .LeftBar__container {
       display: flex;
@@ -49,13 +35,7 @@
           margin-block: 0.5em;
 
           a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-            text-decoration: none;
-            color: inherit;
-            margin-right: 1em;
+            @include LeftBar__user_a;
 
             img,
             svg {
@@ -87,10 +67,7 @@
           transition: 250ms ease-in-out;
 
           .LEFT_BAR__item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0.5em;
+            @include LEFT_BAR__item;
 
             img {
               width: 30px;
@@ -98,11 +75,7 @@
             }
 
             span {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              width: 100%;
-              font-size: 14px;
+              @include LEFT_BAR__item_span;
             }
           }
 

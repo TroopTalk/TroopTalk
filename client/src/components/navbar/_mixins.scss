@@ -1,0 +1,80 @@
+@mixin Navbar__ {
+  position: sticky;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  height: 50px;
+  z-index: 1000;
+}
+
+@mixin Navbar__left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 2.25em;
+}
+
+@mixin Navbar__left_span {
+  font-weight: bold;
+  font-size: 20px;
+  color: themed("logo");
+}
+
+@mixin Navbar__search {
+  display: flex;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 5px;
+  // padding: 5px;
+  margin-left: 2.5em;
+}
+
+@mixin Navbar__search_input {
+  width: 400px;
+  color: gray;
+  font-size: 1em;
+  line-height: 1;
+  background-color: transparent;
+  border: none;
+  // border-top-left-radius: 0;
+  border-radius: 0;
+  padding: 0.5em 0.5em 0.25em 0.5em;
+  margin: 0.5em;
+}
+
+@mixin Navbar__right {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  gap: 0.5em;
+}
+
+@mixin item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+@mixin item_svg {
+  padding: 0.25em;
+  border-radius: 10em;
+  transition: 150ms ease-in-out;
+
+  &:hover {
+    background: #999;
+    outline: 2px solid gray;
+  }
+}
+
+@mixin Navbar__user_img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
