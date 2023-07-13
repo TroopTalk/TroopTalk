@@ -9,7 +9,7 @@ import "./navbar.scss";
 const Navbar = () => {
   const navigate = useNavigate();
   const { toggle, darkMode } = useContext(DarkModeContext);
-  const darkLight = { background: darkMode ? "#000" : "#fff" };
+  const darkLight = { background: darkMode ? "#242526" : "#fff" };
 
   const { currentUser, logout } = useContext(AuthContext);
 
