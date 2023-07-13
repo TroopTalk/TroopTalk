@@ -3,7 +3,7 @@ import { menuItems } from "./menuItems";
 
 const LeftBarMid = () => {
   return (
-    <div className="LEFT_BAR__menu">
+    <div className="LeftBar__menu">
       <span>Your shortcuts</span>
       <div>
         <LeftBarLinks items={menuItems} />

@@ -3,8 +3,8 @@ import "./leftBar.scss";
 
 const LeftBar = () => {
   return (
-    <div className="LEFT_BAR__">
-      <div className="LEFT_BAR__container">
+    <div className="LeftBar__">
+      <div className="LeftBar__container">
         <LeftBarTop />
         <hr />
         <LeftBarMid />

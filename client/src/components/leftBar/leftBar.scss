@@ -1,7 +1,8 @@
 @import "../../style.scss";
 
-.LEFT_BAR__ {
+.LeftBar__ {
   @include themify($themes) {
+    display: flex;
     flex: 2;
     position: sticky;
     top: 70px;
@@ -18,7 +19,10 @@
       display: none;
     }
 
-    .LEFT_BAR__container {
+    .LeftBar__container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
       padding: 8px;
 
       hr {
@@ -28,27 +32,30 @@
         background-color: themed("border");
       }
 
-      .LEFT_BAR__menu {
+      .LeftBar__menu {
         display: flex;
         flex-direction: column;
         gap: 20px;
+
+        img {
+          padding: 0.25em 0.5em;
+        }
 
         span {
           font-size: 12px;
         }
 
-        .LEFT_BAR__user {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding: 8px;
+        .LeftBar__user {
+          margin-block: 0.5em;
 
           a {
             display: flex;
             align-items: center;
             gap: 10px;
+            width: 100%;
             text-decoration: none;
             color: inherit;
+            margin-right: 1em;
 
             img,
             svg {
@@ -56,6 +63,10 @@
               height: 30px;
               border-radius: 50%;
               object-fit: cover;
+            }
+
+            svg {
+              padding: 0.25em 0.5em;
             }
 
             span {
@@ -67,7 +78,7 @@
         a {
           display: flex;
           justify-content: flex-start;
-          align-items: flex-start;
+          align-items: center;
           gap: 10px;
           text-decoration: none;
           color: inherit;
@@ -83,6 +94,7 @@
 
             img {
               width: 30px;
+              padding: 0.25em 0.5em;
             }
 
             span {
