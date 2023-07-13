@@ -3,7 +3,7 @@ import { menuItems } from "./menuItems";
 
 const LeftBarEnd = () => {
   return (
-    <div className="LEFT_BAR__menu">
+    <div className="LeftBar__menu">
       <span>Others</span>
       <LeftBarLinks items={menuItems} />
     </div>

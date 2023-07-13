@@ -17,8 +17,8 @@ const LeftBarTop = () => {
   const { name, profilePic } = currentUser;
 
   return (
-    <div className="LEFT_BAR__menu">
-      <div className="LEFT_BAR__user">
+    <div className="LeftBar__menu">
+      <div className="LeftBar__user">
         <Link to="#">
           {profilePic ? <img src={`/upload/${profilePic}`} alt={`${name}'s profile pic`} /> : <AccountCircle>{name ? name[0] : "U"}</AccountCircle>}
           <span>{name ? name : "User"}</span>
