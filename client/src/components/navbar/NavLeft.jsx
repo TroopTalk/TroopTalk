@@ -6,7 +6,7 @@ import { useContext } from "react";
 
 const NavLeft = () => {
   const { darkMode } = useContext(DarkModeContext);
-  const darkLightText = { color: darkMode ? "#fff" : "#000" };
+  const darkLightText = { color: darkMode ? "#fff" : "#242526" };
 
   return (
     <div className={nav.left}>
@@ -16,7 +16,7 @@ const NavLeft = () => {
       <Icon icon="grid" />
       <div className={nav.search}>
         <Icon icon="search" />
-        <input {...input} />
+        <input {...input} style={darkLightText} />
       </div>
     </div>
   );

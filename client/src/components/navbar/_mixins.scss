@@ -28,9 +28,13 @@
   display: flex;
   align-items: center;
   border: 1px solid gray;
-  border-radius: 5px;
+  border-radius: 10em;
   // padding: 5px;
   margin-left: 2.5em;
+
+  &:focus-within {
+    outline: 2px solid gray;
+  }
 }
 
 @mixin Navbar__search_input {
@@ -44,6 +48,10 @@
   border-radius: 0;
   padding: 0.5em 0.5em 0.25em 0.5em;
   margin: 0.5em;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 @mixin Navbar__right {

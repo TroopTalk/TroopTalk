@@ -13,9 +13,8 @@
 
       hr {
         margin: 20px 0px;
-        border: none;
-        height: 0.5px;
-        background-color: themed("border");
+        border: 1px solid themed("border");
+        border-radius: 10em;
       }
 
       .LeftBar__menu {
@@ -82,6 +81,13 @@
           &:hover {
             outline: 1px solid gray;
             scale: 102%;
+            background: radial-gradient(themed("border"), themed("bg"));
+            // box-shadow: 0 0 4px themed("textColorSoft");
+          }
+
+          &:active {
+            scale: 100%;
+            transition: 50ms ease-in-out ;
           }
         }
       }
