@@ -1,0 +1,38 @@
+@import "../../style.scss";
+
+@mixin POST__ {
+  -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+  -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+  box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
+  border-radius: 20px;
+  background-color: themed("bg");
+  color: themed("textColor");
+}
+
+@mixin POST__user {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin POST__user_button {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  border: none;
+  background-color: #f0544f;
+  padding: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+//
+
+@mixin POST__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
