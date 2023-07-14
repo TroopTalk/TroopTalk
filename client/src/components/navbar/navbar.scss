@@ -26,14 +26,6 @@
 
   .Navbar__right {
     @include Navbar__right;
-
-    .item {
-      @include item;
-
-      svg {
-        @include item_svg;
-      }
-    }
   }
 
   a {
@@ -67,4 +59,55 @@
       }
     }
   }
+}
+
+.bg {
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 70px;
+  z-index: 10000000;
+}
+
+.navbar-dark,
+.bg-dark {
+  background: black !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+  }
+}
+
+.bg-light {
+  background: white !important;
+}
+
+.navbar-nav {
+  height: max-content !important;
+  margin-block: 1em !important;
+}
+
+.item {
+  @include item;
+
+  svg {
+    @include item_svg;
+  }
+}
+
+.item-margin {
+  margin-right: 1em;
+  
+  @media (max-width: 991px) {
+    margin-right: 0 !important;
+  }
+}
+
+.form-control {
+  border-radius: 100em;
+}
+
+.me-2 {
+  margin-right: 0 !important;
 }
