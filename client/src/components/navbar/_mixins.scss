@@ -70,6 +70,8 @@
 }
 
 @mixin item_svg {
+  width: 1.5em !important;
+  height: 1.5em !important;
   padding: 0.25em;
   border-radius: 10em;
   transition: 150ms ease-in-out;
