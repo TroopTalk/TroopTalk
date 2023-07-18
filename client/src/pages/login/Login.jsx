@@ -47,12 +47,10 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div className="LOGIN__">
-        <div className="LOGIN__card">
-          <LoginLeft />
-          <SignIn handleLogin={handleLogin} handleChange={handleChange} err={err} />
-        </div>
+    <div className="LOGIN__">
+      <div className="LOGIN__card">
+        <LoginLeft />
+        <SignIn handleLogin={handleLogin} handleChange={handleChange} err={err} />
       </div>
     </div>
   );

@@ -119,7 +119,7 @@ const calculateTimeToNextWeight = (currentLiftPerSecond, nextWeightPrice) => {
 };
 
 // Example usage , use https://officespace.zendesk.com/hc/en-us/articles/115000593531-Scientific-Notation-Large-Numbers-Guide
-const currentLiftPerSecond = 2.21e48; // The amount lifted per second
-const nextWeightPrice = (2.86e54 - 0.637e54) / 2; // The price of the next weight in exponential notation
+const currentLiftPerSecond = 5.532e48; // The amount lifted per second
+const nextWeightPrice = (9.99e54 - 0.188e54) / 2; // The price of the next weight in exponential notation
 
 console.log(calculateTimeToNextWeight(currentLiftPerSecond, nextWeightPrice));

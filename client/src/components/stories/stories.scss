@@ -2,21 +2,27 @@
 @import "./mixins";
 
 .STORIES__ {
-  @include STORIES__;
+  @include themify($themes) {
+    @include STORIES__;
 
-  .STORIES__story {
-    @include STORIES__story;
+    .STORIES__story {
+      @include STORIES__story;
 
-    img {
-      @include STORIES__story_img;
+      img {
+        @include STORIES__story_img;
+      }
+
+      span {
+        @include STORIES__story_span;
+      }
+
+      button {
+        @include STORIES__story_button;
+      }
     }
 
-    span {
-      @include STORIES__story_span;
-    }
-
-    button {
-      @include STORIES__story_button;
+    .Stories__loading {
+      color: themed("textColor");
     }
   }
 }

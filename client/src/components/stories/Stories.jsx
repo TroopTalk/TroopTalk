@@ -1,12 +1,11 @@
-import { AuthContext, DarkModeContext } from "../../context/export.js";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { AuthContext } from "../../context/export.js";
 import { useState, useContext } from "react";
 import { makeRequest } from "../../axios";
 import "./stories.scss";
 
 const Stories = () => {
   const { currentUser } = useContext(AuthContext);
-  const darkMode = useContext(DarkModeContext);
 
   const [newStory, setNewStory] = useState("");
   const { data, isLoading, isError } = useQuery("stories", async () => {
@@ -32,8 +31,8 @@ const Stories = () => {
         <input type="text" value={newStory} onChange={(e) => setNewStory(e.target.value)} />
         <button onClick={handleAddStory}>+</button>
       </div>
-      {isError && <div style={{ color: darkMode ? "#fff" : "#000" }}>Something went wrong</div>}
-      {isLoading && <div style={{ color: darkMode ? "#fff" : "#000" }}>Loading...</div>}
+      {isLoading && <div className="Stories__loading">Loading Stories...</div>}
+      {isError && <div className="Stories__loading">Something went wrong</div>}
       {!isLoading &&
         !isError &&
         data.map((story) => (

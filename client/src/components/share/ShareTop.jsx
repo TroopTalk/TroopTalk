@@ -1,5 +1,6 @@
 // import { Button } from "@mui/material";
 import Button from "../customHTML/mui/button/Button";
+import Textarea from "../customHTML/mui/textArea/Textarea";
 
 const ShareTop = ({ placeholder, onChange, value, file, onRemovePicture }) => {
   return (

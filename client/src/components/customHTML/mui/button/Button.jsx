@@ -1,9 +1,14 @@
 import { Button as MuiButton } from "@mui/material";
 
-const Button = ({ variant, type, text, onClick }) => (
-  <MuiButton variant={variant} type={type} onClick={onClick}>
-    {text}
-  </MuiButton>
-);
+const Button = ({ className, variant, type, onClick, children }) => {
+  const buttonProps = {
+    className: className,
+    variant: variant,
+    type: type,
+    onclick: onClick,
+  };
+
+  return <MuiButton {...buttonProps}>{children}</MuiButton>;
+};
 
 export default Button;

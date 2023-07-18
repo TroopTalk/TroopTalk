@@ -9,7 +9,7 @@ const SignIn = ({ handleLogin, handleChange, err }) => {
         <InputMui type="email" name="email" label="Email" onChange={handleChange} />
         <InputMui type="password" name="password" label="Password" onChange={handleChange} />
         {err && <p>{err}</p>}
-        <Button variant="contained" type="submit" text="Share" />
+        <Button variant="contained" type="submit">Login</Button>
       </form>
     </div>
   );

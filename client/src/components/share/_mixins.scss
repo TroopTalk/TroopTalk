@@ -8,6 +8,7 @@
   background-color: themed("bg");
   color: themed("textColor");
   margin-bottom: 20px;
+  box-shadow: 0 0 2px themed("textcolor");
 }
 
 @mixin SHARE__top {
@@ -19,19 +20,36 @@
 
 @mixin SHARE__left_textarea {
   width: 100%;
+  min-height: 5em;
+  max-height: 3em;
   height: 100%;
   border: none;
+  border-radius: 12px;
   background-color: transparent;
   color: themed("textColor");
   font-family: sans-serif;
   font-size: 1.3em;
+  resize: none !important;
   padding: 0.5em;
-  resize: none;
-  min-height: 5em;
-  max-height: 3em;
+  outline: 1px solid themed('border');
 
   &:focus {
-    outline: 2px solid #aaa;
+    outline: 2px solid #1976d2;
+  }
+
+  /* Customize the scrollbar track */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 3em !important;
+    overflow: hidden !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: black;
+    border-radius: 10em;
+    overflow: hidden !important;
+    margin-block: 0.5em !important;
+    cursor: pointer !important;
   }
 }
 
