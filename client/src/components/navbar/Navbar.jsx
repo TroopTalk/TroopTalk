@@ -51,21 +51,19 @@
 // export default Navbar;
 
 import { AuthContext, DarkModeContext } from "../../context/export.js";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
 import { Navbar as BootStrapNavbar } from "react-bootstrap";
+import { IconLink } from "../customHTML/export.js";
+import Container from "react-bootstrap/Container";
 import { useNavigate } from "react-router-dom";
+import { NavbarCollapse } from "./import.js";
 import { useContext } from "react";
-import { Icon, IconLink } from "../customHTML/export.js";
 import { nav } from "./info.js";
 import "./navbar.scss";
-import NavbarDropdown from "./NavbarDropdown.jsx";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { currentUser, logout } = useContext(AuthContext);
-  const { toggle, darkMode } = useContext(DarkModeContext);
+  const { darkMode } = useContext(DarkModeContext);
   // const darkLight = { background: darkMode ? "#242526" : "#fff" };
   const navDark = darkMode ? "dark" : "light";
 
@@ -86,21 +84,7 @@ const Navbar = () => {
       <Container fluid className={`text-${navDark} bg-${navDark} `}>
         <BootStrapNavbar.Brand href="#">TroopTalk</BootStrapNavbar.Brand>
         <BootStrapNavbar.Toggle aria-controls="navbarScroll" />
-        <BootStrapNavbar.Collapse id="navbarScroll" className="collapsible">
-          <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-            <NavbarDropdown />
-          </Nav>
-          <div className="item item-margin">{darkMode ? <Icon icon="moon" onClick={toggle} /> : <Icon icon="sun" onClick={toggle} />}</div>
-          <Form className="d-flex">
-            <Form.Control type="search" placeholder="Search" className={`me-2 bg-${navDark}`} aria-label="Search"></Form.Control>
-          </Form>
-          <UserIcon />
-          <div className="item" onClick={handleLogout}>
-            <IconLink className={nav.logout} icon="logout" />
-          </div>
-        </BootStrapNavbar.Collapse>
+        <NavbarCollapse onClick={handleLogout} children={<UserIcon />} />
       </Container>
     </BootStrapNavbar>
   );
