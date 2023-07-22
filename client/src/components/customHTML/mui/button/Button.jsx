@@ -5,7 +5,7 @@ const Button = ({ className, variant, type, onClick, children }) => {
     className: className,
     variant: variant,
     type: type,
-    onclick: onClick,
+    onClick: onClick,
   };
 
   return <MuiButton {...buttonProps}>{children}</MuiButton>;

@@ -24,4 +24,5 @@ const ShareBottom = ({ handleFileInputChange, fileInputRef, onClick }) => {
     </div>
   );
 };
+
 export default ShareBottom;
