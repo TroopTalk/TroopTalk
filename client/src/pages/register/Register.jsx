@@ -12,7 +12,7 @@ const Register = () => {
           <p>Welcome to TroopTalk, a place for veterans to come together and socialize with each other!</p>
           <span>Do you have an account?</span>
           <Link to="/login">
-            <Button  text="Login" />
+            <Button>Login</Button>
           </Link>
         </div>
         <div className="REGISTER__right">

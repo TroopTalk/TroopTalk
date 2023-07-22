@@ -5,7 +5,7 @@
   @include themify($themes) {
     @include LeftBar__;
 
-    .LeftBar__container {
+    &container {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -87,7 +87,7 @@
 
           &:active {
             scale: 100%;
-            transition: 50ms ease-in-out ;
+            transition: 50ms ease-in-out;
           }
         }
       }
