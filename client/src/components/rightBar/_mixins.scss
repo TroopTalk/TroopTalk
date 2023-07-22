@@ -6,10 +6,15 @@
   overflow: scroll;
   background-color: themed("bgSoft");
 
-  @include mobile {
+  @media (max-width: 1060px) {
     display: none;
   }
+
   @include tablet {
+    display: none;
+  }
+
+  @include mobile {
     display: none;
   }
 

@@ -108,18 +108,20 @@ const Navbar = () => {
 
 export default Navbar;
 
-const calculateTimeToNextWeight = (currentLiftPerSecond, nextWeightPrice) => {
-  const timeInSeconds = nextWeightPrice / 2 / currentLiftPerSecond;
-  const days = Math.floor(timeInSeconds / (3600 * 24));
-  const hours = Math.floor((timeInSeconds % (3600 * 24)) / 3600);
-  const minutes = Math.floor((timeInSeconds % 3600) / 60);
-  const seconds = Math.floor(timeInSeconds % 60);
+// ! ignore, just some code i made to calculate stuff in a game - Andrew
 
-  return `Time to reach the next weight: ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds`;
-};
+// const calculateTimeToNextWeight = (currentLiftPerSecond, nextWeightPrice) => {
+//   const timeInSeconds = nextWeightPrice / 2 / currentLiftPerSecond;
+//   const days = Math.floor(timeInSeconds / (3600 * 24));
+//   const hours = Math.floor((timeInSeconds % (3600 * 24)) / 3600);
+//   const minutes = Math.floor((timeInSeconds % 3600) / 60);
+//   const seconds = Math.floor(timeInSeconds % 60);
 
-// Example usage , use https://officespace.zendesk.com/hc/en-us/articles/115000593531-Scientific-Notation-Large-Numbers-Guide
-const currentLiftPerSecond = 5.532e48; // The amount lifted per second
-const nextWeightPrice = (9.99e54 - 0.188e54) / 2; // The price of the next weight in exponential notation
+//   return `Time to reach the next weight: ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds`;
+// };
 
-console.log(calculateTimeToNextWeight(currentLiftPerSecond, nextWeightPrice));
+// // Example usage , use https://officespace.zendesk.com/hc/en-us/articles/115000593531-Scientific-Notation-Large-Numbers-Guide
+// const currentLiftPerSecond = 5.532e48; // The amount lifted per second
+// const nextWeightPrice = (9.99e54 - 0.188e54) / 2; // The price of the next weight in exponential notation
+
+// console.log(calculateTimeToNextWeight(currentLiftPerSecond, nextWeightPrice));
