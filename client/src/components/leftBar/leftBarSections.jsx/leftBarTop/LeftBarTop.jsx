@@ -9,19 +9,30 @@ import { menuItems } from "../leftBarEnd/menuItems";
 const LeftBarTop = () => {
   const { currentUser } = useContext(AuthContext);
 
-  if (!currentUser || typeof currentUser !== "object" || !currentUser.hasOwnProperty("token")) {
+  if (
+    !currentUser ||
+    typeof currentUser !== "object" ||
+    !currentUser.hasOwnProperty("token")
+  ) {
     console.error("Invalid currentUser:", currentUser);
     return null;
   }
 
-  const { name, profilePic } = currentUser;
+  const { user, profilePic } = currentUser;
 
   return (
     <div className="LeftBar__menu">
       <div className="LeftBar__user">
         <Link to="#">
-          {profilePic ? <img src={`/upload/${profilePic}`} alt={`${name}'s profile pic`} /> : <AccountCircle>{name ? name[0] : "U"}</AccountCircle>}
-          <span>{name ? name : "User"}</span>
+          {profilePic ? (
+            <img
+              src={`/upload/${profilePic}`}
+              alt={`${user.username}'s profile pic`}
+            />
+          ) : (
+            <AccountCircle>{user.username ? user.username : "U"}</AccountCircle>
+          )}
+          <span>{user.username ? user.username : "User"}</span>
         </Link>
       </div>
       <LeftBarLinks items={menuItems} />
