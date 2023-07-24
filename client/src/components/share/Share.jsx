@@ -11,6 +11,7 @@ const Share = () => {
   const [text, setText] = useState("");
 
   const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
 
   const fileInputRef = useRef(null);
 
@@ -65,7 +66,7 @@ const Share = () => {
 
   const props = {
     shareTopProps: {
-      placeholder: `What's on your mind ${currentUser.name}?`,
+      placeholder: `What's on your mind ${currentUser.user.firstName}?`,
       onChange: (e) => setText(e.target.value),
       onRemovePicture: handleRemovePicture,
       value: text,
